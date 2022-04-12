@@ -37,12 +37,14 @@ export default function Header() {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
               <div className="flex-shrink-0 flex items-center">
-                <h2
-                  className="text-orange-400 dark:text-white"
-                  id={styles["logo"]}
-                >
-                  Tupulung
-                </h2>
+                <a href="/">
+                  <h2
+                    className="text-orange-400 dark:text-white"
+                    id={styles["logo"]}
+                  >
+                    Tupulung
+                  </h2>
+                </a>
               </div>
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex space-x-4"></div>
@@ -50,7 +52,7 @@ export default function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {themeChanger()}
                 <a
-                  href="#"
+                  href="/authentication/login"
                   className={
                     "select-none mr-2 text-orange-400 dark:text-white hover:bg-orange-400 hover:text-white px-2 py-1 rounded-md text-m font-medium"
                   }
@@ -58,7 +60,7 @@ export default function Header() {
                   Masuk
                 </a>
                 <a
-                  href="#"
+                  href="/authentication/register"
                   className={
                     "select-none text-orange-400 dark:text-white hover:bg-orange-400 hover:text-white px-2 py-1 rounded-md text-m font-medium"
                   }
