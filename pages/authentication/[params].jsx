@@ -5,22 +5,11 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import loginPict from "../../public/authentication_picture.png";
 import styles from "../../styles/Login.module.css";
-
-// await fetch("...", {
-//   method: "POST",
-//   headers: {
-//     "Content-type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     email,
-//     password,
-//   }),
-// });
+import Button from "../../components/Button";
 
 export default function Login() {
   const router = useRouter();
   const { params } = router.query;
-  // console.log(params);
 
   // Login and Register input states
   const [email, setEmail] = useState("");
@@ -31,34 +20,32 @@ export default function Login() {
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
   const [avatar, setAvatar] = useState("");
-  // const [phone, setPhone] = useState("");
+
+  const dataSaver = (loginData) => {
+    localStorage.setItem("token", loginData.token);
+    localStorage.setItem("dark", loginData.user.dark_theme);
+    localStorage.setItem("id", loginData.user.id);
+  };
 
   const handleLogin = async () => {
-    var data = {
-      email,
-      password,
-    };
     var config = {
       method: "post",
       url: "https://tupulung.wildani.com/api/auth",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      data: data,
+      data: "&email=" + email + "&password=" + password,
     };
 
-    console.log(config);
-
-    axios(config)
+    await axios(config)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        dataSaver(response.data.data);
         alert("berhasil");
       })
       .catch((response) => {
         console.log(response);
-        console.log("error");
-        console.log(email.length);
-        alert(email + " " + password);
+        alert("gagal");
       });
   };
 
@@ -127,15 +114,13 @@ export default function Login() {
           </div>
         </form>
 
-        <div
-          className="w-full bg-orange-400 hover:text-orange-400 mt-10 hover:bg-white border-2 border-orange-400 text-center rounded-md text-white"
-          id={styles["buttonLogin"]}
+        <Button
+          text={"Masuk"}
           onClick={() => {
             handleLogin();
           }}
-        >
-          Masuk
-        </div>
+        />
+
         <p className="text-emerald-900 wd-full text-center mt-2 dark:text-white">
           Belum punya akun? daftar{" "}
           <a
@@ -147,7 +132,7 @@ export default function Login() {
         </p>
       </section>
     );
-  } else {
+  } else if (params === "register") {
     result = (
       <section id={styles["formContainer"]}>
         <h1 className="text-4xl text-emerald-900 dark:text-white">Buat akun</h1>
@@ -248,15 +233,12 @@ export default function Login() {
           </section>
         </form>
 
-        <div
-          className="w-full bg-orange-400 hover:text-orange-400 mt-10 hover:bg-white border-2 border-orange-400 text-center rounded-md text-white"
-          id={styles["buttonLogin"]}
+        <Button
+          text={"Buat akun"}
           onClick={() => {
             handleRegister();
           }}
-        >
-          Buat akun
-        </div>
+        />
       </section>
     );
   }

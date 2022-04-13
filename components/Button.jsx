@@ -8,7 +8,7 @@ export default function Button(props) {
       id={styles["buttonLogin"]}
       onClick={props.onClick}
     >
-      Masuk
+      {props.text}
     </div>
   );
 }
