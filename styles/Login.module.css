@@ -1,0 +1,62 @@
+#loginLayout {
+  width: 80%;
+  max-width: 1520px;
+  /* margin-top: 11vh; */
+  padding-bottom: 10vh;
+  display: flex;
+}
+
+#authImage {
+  width: 43%;
+  margin: auto;
+  /* padding-bottom: 18vh; */
+  display: none;
+}
+
+#formContainer {
+  width: 100%;
+  margin: auto;
+  /* padding-bottom: 18vh; */
+}
+
+#formInput div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#formInput div label {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+#formInput div input {
+  height: 2.2rem;
+  font-size: 1.1rem;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#buttonLogin {
+  padding: 8px;
+  cursor: pointer;
+}
+
+@media (min-width: 1000px) {
+  #authImage {
+    display: block;
+  }
+
+  #formContainer {
+    width: 50%;
+  }
+
+  #formInput section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #formInput section div {
+    width: 48%;
+  }
+}

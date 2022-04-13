@@ -1,6 +1,5 @@
 import Head from "next/head";
 import React from "react";
-import Image from "next/image";
 import Header from "./Header";
 // import styles from "../styles/Home.module.css";
 import styles from "../styles/Layout.module.css";

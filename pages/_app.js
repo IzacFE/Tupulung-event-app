@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import Layout from "../components/Layout";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://tupulung.wildani.com";
 
 function MyApp({ Component, pageProps }) {
   return (

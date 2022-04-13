@@ -1,11 +1,22 @@
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
+
 import { Disclosure, Menu } from "@headlessui/react";
 import { LightBulbIcon } from "@heroicons/react/outline";
-
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
   const { systemTheme, theme, setTheme } = useTheme();
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+    console.log(token);
+  }, []);
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+  };
 
   const themeChanger = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
@@ -82,7 +93,7 @@ export default function Header() {
                   <Menu.Items className="origin-top-right absolute right-0 mt-5 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
                       <a
-                        href="#"
+                        href="/profile/id"
                         className=" block px-4 py-2 text-sm text-emerald-900"
                       >
                         Profil
@@ -97,12 +108,14 @@ export default function Header() {
                       </a>
                     </Menu.Item>
                     <Menu.Item>
-                      <a
-                        href="#"
-                        className=" block px-4 py-2 text-sm text-emerald-900"
+                      <div
+                        className=" block px-4 py-2 text-sm text-emerald-900 "
+                        onClick={() => {
+                          logOut();
+                        }}
                       >
                         Keluar
-                      </a>
+                      </div>
                     </Menu.Item>
                   </Menu.Items>
                 </Menu>
