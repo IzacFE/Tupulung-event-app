@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 import React from "react";
 import Card from "../components/Card";
 import Search from "../components/search";
+=======
+// import ButtonTest from "../components/ButtonTest";
+>>>>>>> 91a2d6db17893fc60f2f6e78b94a35af9c9bcf0e
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <div className={styles.container}>
+<<<<<<< HEAD
       {/* search */}
 
       <div>
@@ -52,6 +57,19 @@ export default function Home() {
           <Card />
         </div>
       </div>
+=======
+      {/* <ButtonTest
+        click1={() => {
+          console.log("button1");
+        }}
+        click2={() => {
+          console.log("button2");
+        }}
+        click3={() => {
+          console.log("button3");
+        }}
+      /> */}
+>>>>>>> 91a2d6db17893fc60f2f6e78b94a35af9c9bcf0e
     </div>
   );
 }

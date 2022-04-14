@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "../styles/PrEvCard.module.css";
-import { DotsCircleHorizontalIcon, HeartIcon } from "@heroicons/react/outline";
+import { HeartIcon } from "@heroicons/react/outline";
 
 export default function PrEvCard() {
   return (
-    <section className="border-white" id={styles["container"]}>
+    <section
+      className="w-full bg-neutral-100 dark:bg-slate-800 p-2"
+      id={styles["container"]}
+    >
       <div
         className="rounded-md bg-emerald-900"
         id={styles["eventImage"]}
@@ -19,16 +22,15 @@ export default function PrEvCard() {
         <h1 className="text-emerald-900 dark:text-neutral-100">
           Spotify Music Fest
         </h1>
-        <h3 className="text-emerald-900 dark:text-neutral-100">
+        <h2 className="text-emerald-900 dark:text-neutral-100">
           Diadakan oleh MTV
-        </h3>
-        <p className="text-emerald-900 dark:text-neutral-100">30 peserta</p>
-        <div>
-          <span>
-            <HeartIcon className="h-5 w-5" /> 5
-          </span>
-
-          <DotsCircleHorizontalIcon className="h-5 w-5" />
+        </h2>
+        <div id={styles["detailFlex"]}>
+          <p className="text-emerald-900 dark:text-neutral-100">30 peserta</p>
+          <div>
+            <HeartIcon className="h-5 w-5 text-red-600" />
+            <h3 className="text-emerald-900 dark:text-neutral-100">5</h3>
+          </div>
         </div>
       </section>
     </section>
