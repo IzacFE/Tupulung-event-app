@@ -1,8 +1,6 @@
-
 import React from "react";
 import Card from "../components/Card";
-import Search from "../components/search";
-
+import Search from "../components/Search";
 
 import styles from "../styles/Home.module.css";
 
