@@ -125,7 +125,6 @@ export default function Login() {
         <p className="text-emerald-900 wd-full text-center mt-2 dark:text-white">
           Belum punya akun? daftar{" "}
           <Link href="/authentication/register">
-            {" "}
             <a className="text-orange-400  hover:text-blue-500 dark:hover:text-white">
               disini
             </a>
