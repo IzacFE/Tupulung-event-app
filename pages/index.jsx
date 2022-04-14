@@ -1,8 +1,7 @@
-
 import React from "react";
 import Card from "../components/Card";
+import PrEvCard from "../components/PrEvCard";
 import Search from "../components/search";
-
 
 import styles from "../styles/Home.module.css";
 
@@ -52,7 +51,7 @@ export default function Home() {
           <Card />
         </div>
         <div className="basis-1/2">
-          <Card />
+          <PrEvCard />
         </div>
       </div>
     </div>
