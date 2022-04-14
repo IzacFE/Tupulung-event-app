@@ -2,13 +2,12 @@ import React from "react";
 import Button from "../../components/Button";
 import styles from "../../styles/Profile.module.css";
 import PrEvCard from "../../components/PrEvCard";
+import Tabs from "../../components/Tabs";
+import Accordion from "../../components/Accordion";
 
 export default function Profile() {
   return (
-    <div
-      className="w-4/5 divide-x divide-emerald-900"
-      id={styles["profileContainer"]}
-    >
+    <div className="w-4/5" id={styles["profileContainer"]}>
       <section className="" id={styles["profile"]}>
         <h2
           className="text-emerald-900 dark:text-neutral-100"
@@ -32,10 +31,7 @@ export default function Profile() {
         <h2 className="text-emerald-900 dark:text-neutral-100 text-center text-2xl">
           Male
         </h2>
-        <div
-          className="w-full divide-x divide-emerald-900"
-          id={styles["eventsNumber"]}
-        >
+        <div className="w-full " id={styles["eventsNumber"]}>
           <section id={styles["attends"]}>
             <h2>21</h2>
             <h3>Menghadiri</h3>
@@ -51,19 +47,20 @@ export default function Profile() {
           eaque ratione nobis atque rem, autem, consectetur neque error nesciunt
           quaerat nihil voluptas?
         </p>
+        <Accordion />
         <Button text={"Edit"} />
         <Button text={"Delete"} />
       </section>
       <section id={styles["events"]}>
-        <h2
-          className="text-emerald-900 dark:text-neutral-100"
-          id={styles["tabEvents"]}
-        >
-          Acara Saya
-        </h2>
-        <PrEvCard />
-        <PrEvCard />
-        <PrEvCard />
+        <div id={styles["tabContainer"]}>
+          <h2
+            className="text-emerald-900 dark:text-neutral-100"
+            id={styles["tabEvents"]}
+          >
+            Acara Saya
+          </h2>
+          <Tabs />
+        </div>
       </section>
     </div>
   );

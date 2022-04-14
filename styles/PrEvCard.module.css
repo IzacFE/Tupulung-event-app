@@ -1,8 +1,8 @@
 #container {
   width: 100%;
   display: flex;
-  /* border-bottom: 1px solid #64748b; */
-  margin: 2rem 0;
+  margin-bottom: 1rem;
+  box-shadow: 1px 1px 5px rgb(152, 151, 151);
 }
 
 #container section {
@@ -10,19 +10,39 @@
 }
 
 #eventImage {
-  width: 300px;
-  height: 200px;
+  width: 45%;
+  height: 180px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 #eventDetail {
-  width: 20vw;
+  width: 55%;
 }
 
-#eventDetail div {
+#eventDetail h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+#eventDetail h2 {
+  font-size: 1.2rem;
+}
+
+#detailFlex {
   margin-top: 3vh;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
+}
+
+#detailFlex div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 0.5rem;
+}
+
+#detailFlex div h3 {
+  margin-left: 0.5rem;
 }

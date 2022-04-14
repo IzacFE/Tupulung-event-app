@@ -17,6 +17,8 @@ export default function Header() {
 
   const logOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
+    localStorage.removeItem("dark");
   };
 
   const themeChanger = () => {
