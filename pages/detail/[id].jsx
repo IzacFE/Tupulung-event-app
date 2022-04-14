@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-<<<<<<< HEAD
 export default function index() {
   return (
     <div>
@@ -163,8 +162,4 @@ export default function index() {
       </div>
     </div>
   );
-=======
-export default function Detail() {
-  return <div>[id]</div>;
->>>>>>> 91a2d6db17893fc60f2f6e78b94a35af9c9bcf0e
 }
