@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-<<<<<<< HEAD
 export default function index() {
   return (
     <div>
