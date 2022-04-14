@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/PrEvCard.module.css";
+import { DotsCircleHorizontalIcon, HeartIcon } from "@heroicons/react/outline";
 
 export default function PrEvCard() {
   return (
@@ -11,7 +12,7 @@ export default function PrEvCard() {
           backgroundImage: `url(https://i1.sndcdn.com/avatars-ylM4tanwBXJZhjWb-X76mWw-t500x500.jpg)`,
         }}
       />
-      <section>
+      <section className="" id={styles["eventDetail"]}>
         <h2 className="text-emerald-900 dark:text-neutral-100">
           Kamis, april 9
         </h2>
@@ -21,8 +22,13 @@ export default function PrEvCard() {
         <h3 className="text-emerald-900 dark:text-neutral-100">
           Diadakan oleh MTV
         </h3>
+        <p className="text-emerald-900 dark:text-neutral-100">30 peserta</p>
         <div>
-          <p className="text-emerald-900 dark:text-neutral-100">30 peserta</p>
+          <span>
+            <HeartIcon className="h-5 w-5" /> 5
+          </span>
+
+          <DotsCircleHorizontalIcon className="h-5 w-5" />
         </div>
       </section>
     </section>

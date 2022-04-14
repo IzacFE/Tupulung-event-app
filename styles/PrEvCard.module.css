@@ -1,7 +1,8 @@
 #container {
   width: 100%;
   display: flex;
-  border-bottom: 1px solid #64748b;
+  /* border-bottom: 1px solid #64748b; */
+  margin: 2rem 0;
 }
 
 #container section {
@@ -14,4 +15,14 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+#eventDetail {
+  width: 20vw;
+}
+
+#eventDetail div {
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-between;
 }

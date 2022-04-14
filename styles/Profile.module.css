@@ -1,24 +1,60 @@
 #profileContainer {
+  margin-top: 5vh;
+  margin-bottom: 5vh;
   max-width: 1520px;
   display: flex;
 }
 
 #profile {
   width: 35%;
+  padding: 2rem;
+}
+
+#events {
+  width: 65%;
+  padding: 2rem;
 }
 
 #profileHead {
-  font-size: 2rem;
+  font-size: 3rem;
+  font-weight: 500;
 }
 
 #profileImage {
-  width: 250px;
-  height: 250px;
+  margin-top: 4vh;
+  width: 220px;
+  height: 220px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
+#profileName {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 3vh;
+}
+
+#eventsNumber {
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+#eventsNumber section {
+  width: 50%;
+}
+
+/* #attends {
+} */
+
 #events {
   width: 65%;
+}
+
+#tabEvents {
+  font-size: 2rem;
 }
