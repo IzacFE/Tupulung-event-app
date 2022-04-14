@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 import { Disclosure, Menu } from "@headlessui/react";
@@ -48,36 +49,40 @@ export default function Header() {
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
               <div className="flex-shrink-0 flex items-center">
-                <a href="/">
-                  <h2
-                    className="text-orange-400 dark:text-white"
-                    id={styles["logo"]}
-                  >
-                    Tupulung
-                  </h2>
-                </a>
+                <h2
+                  className="text-orange-400 dark:text-white"
+                  id={styles["logo"]}
+                >
+                  <Link href="/">
+                    <a>Tupulung</a>
+                  </Link>
+                </h2>
               </div>
               <div className="hidden sm:block sm:ml-6">
                 <div className="flex space-x-4"></div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {themeChanger()}
-                <a
-                  href="/authentication/login"
-                  className={
-                    "select-none mr-2 text-orange-400 dark:text-white hover:bg-orange-400 hover:text-white px-2 py-1 rounded-md text-m font-medium"
-                  }
-                >
-                  Masuk
-                </a>
-                <a
-                  href="/authentication/register"
-                  className={
-                    "select-none text-orange-400 dark:text-white hover:bg-orange-400 hover:text-white px-2 py-1 rounded-md text-m font-medium"
-                  }
-                >
-                  Daftar
-                </a>
+                <Link href="/authentication/login">
+                  <a
+                    className={
+                      "select-none mr-2 text-orange-400 dark:text-white hover:bg-orange-400 hover:text-white px-2 py-1 rounded-md text-m font-medium"
+                    }
+                  >
+                    Masuk
+                  </a>
+                </Link>
+
+                <Link href="/authentication/register">
+                  <a
+                    className={
+                      "select-none text-orange-400 dark:text-white hover:bg-orange-400 hover:text-white px-2 py-1 rounded-md text-m font-medium"
+                    }
+                  >
+                    Daftar
+                  </a>
+                </Link>
+
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
@@ -92,20 +97,18 @@ export default function Header() {
                   </div>
                   <Menu.Items className="origin-top-right absolute right-0 mt-5 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <Menu.Item>
-                      <a
-                        href="/profile/id"
-                        className=" block px-4 py-2 text-sm text-emerald-900"
-                      >
-                        Profil
-                      </a>
+                      <Link href="/profile/id">
+                        <a className=" block px-4 py-2 text-sm text-emerald-900">
+                          Profil
+                        </a>
+                      </Link>
                     </Menu.Item>
                     <Menu.Item>
-                      <a
-                        href="#"
-                        className=" block px-4 py-2 text-sm text-emerald-900"
-                      >
-                        Acara saya
-                      </a>
+                      <Link href="#">
+                        <a className=" block px-4 py-2 text-sm text-emerald-900">
+                          Acara saya
+                        </a>
+                      </Link>
                     </Menu.Item>
                     <Menu.Item>
                       <div
