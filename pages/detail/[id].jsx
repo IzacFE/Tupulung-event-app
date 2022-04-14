@@ -100,8 +100,8 @@ export default function index() {
 
         {/* participant */}
 
-        <section className="mb-20">
-          <p className="mt-24 text-lg font-medium mb-10">partisipan(n)</p>
+        <section className="mb-3">
+          <p className=" text-lg font-medium mb-10">partisipan(n)</p>
           <div className="flex flex-col space-y-10">
             <div className="flex flex-row flex-wrap">
               <div className="flex flex-col md:flex-row justify-around mx-auto space-x-9 flex-wrap">
@@ -156,6 +156,54 @@ export default function index() {
                   <p className="text-gray-500">member</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-20">
+          <div className="flex space-x-2 justify-center">
+            <button
+              type="button"
+              className="inline-block px-28 py-2.5 bg-orange-400 text-white font-medium text-xs leading-tight rounded  hover:bg-orange-500  focus:bg-orange-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-600  transition duration-150 ease-in-out"
+            >
+              ikut event
+            </button>
+          </div>
+        </section>
+
+        <section className="mb-20">
+          <div className="bg-white rounded-lg  w-auto h-36 dark:bg-slate-900 flex justify-center">
+            <div className="mb-3">
+              <textarea
+                className="
+        form-control
+        block
+        w-max-content
+        px-3
+        py-1.5
+        text-base
+        font-light
+        text-gray-700
+        bg-white bg-clip-padding
+        border border-solid border-gray-300
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none
+        resize-none
+        mt-2 mb-4
+      "
+                id="comment"
+                rows="3"
+                placeholder="apa komentar kamu?"
+              ></textarea>
+              <button
+                type="button"
+                className=" inline-block px-10 py-2.5 bg-orange-400 text-white font-medium text-xs leading-tight rounded  hover:bg-orange-500  focus:bg-orange-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-600  transition duration-150 ease-in-out "
+              >
+                kirim
+              </button>
             </div>
           </div>
         </section>
