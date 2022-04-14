@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -123,12 +124,12 @@ export default function Login() {
 
         <p className="text-emerald-900 wd-full text-center mt-2 dark:text-white">
           Belum punya akun? daftar{" "}
-          <a
-            className="text-orange-400  hover:text-blue-500 dark:hover:text-white"
-            href="/authentication/register"
-          >
-            disini
-          </a>
+          <Link href="/authentication/register">
+            {" "}
+            <a className="text-orange-400  hover:text-blue-500 dark:hover:text-white">
+              disini
+            </a>
+          </Link>
         </p>
       </section>
     );
