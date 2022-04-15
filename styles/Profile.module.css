@@ -49,6 +49,33 @@
   width: 50%;
 }
 
+.formpart {
+  display: flex;
+  flex-direction: column;
+}
+
+.formpart label {
+  font-size: 1.2rem;
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+
+.formpart input {
+  border: 1px solid rgb(148, 148, 148);
+  padding: 5px 10px;
+  /* border-radius: ; */
+}
+
+.gender div {
+  display: flex;
+  flex-direction: row;
+}
+
+.radioButton section label {
+  font-size: 1.1rem;
+  margin-left: 10px;
+}
+
 /* #attends {
 } */
 

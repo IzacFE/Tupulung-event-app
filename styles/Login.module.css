@@ -37,6 +37,17 @@
   padding-right: 10px;
 }
 
+.gender div {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+}
+
+.gender div label {
+  margin-left: 10px !important;
+  font-size: 1.3rem !important;
+}
+
 #buttonLogin {
   padding: 8px;
   cursor: pointer;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Router from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -12,6 +13,7 @@ export default function Login() {
   const router = useRouter();
   const { params } = router.query;
 
+  const [token, setToken] = useState(false);
   // Login and Register input states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +23,12 @@ export default function Login() {
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
   const [avatar, setAvatar] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      Router.push("/");
+    }
+  }, []);
 
   const dataSaver = (loginData) => {
     localStorage.setItem("token", loginData.token);
@@ -43,6 +51,8 @@ export default function Login() {
         console.log(response.data);
         dataSaver(response.data.data);
         alert("berhasil");
+        // Router.push("/");
+        window.location.reload();
       })
       .catch((response) => {
         console.log(response);
@@ -63,7 +73,8 @@ export default function Login() {
       })
       .then((response) => {
         console.log(response);
-        alert("berhasil " + response);
+        alert("berhasil");
+        Router.push("/authentication/login");
       })
       .catch((err) => {
         console.log(err);
@@ -187,7 +198,43 @@ export default function Login() {
               />
             </div>
 
-            <div>
+            <div className={styles.gender}>
+              <label htmlFor="" className="text-emerald-900 dark:text-white">
+                Jenis kelamin
+              </label>
+              <div>
+                <input
+                  type="radio"
+                  name="gender"
+                  value={"Pria"}
+                  className="rounded-md"
+                  id="Permainan"
+                />
+                <label
+                  htmlFor="Permainan"
+                  className="text-emerald-900 dark:text-white"
+                >
+                  Pria
+                </label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="gender"
+                  value={"Wanita"}
+                  className="rounded-md"
+                  id="Selebriti"
+                />
+                <label
+                  htmlFor="Selebriti"
+                  className="text-emerald-900 dark:text-white"
+                >
+                  Wanita
+                </label>
+              </div>
+            </div>
+
+            {/* <div>
               <label htmlFor="" className="text-emerald-900 dark:text-white">
                 Gender
               </label>
@@ -199,7 +246,7 @@ export default function Login() {
                   setGender(e.target.value);
                 }}
               />
-            </div>
+            </div> */}
           </section>
 
           <section>
@@ -222,12 +269,12 @@ export default function Login() {
                 Gambar Profile
               </label>
               <input
-                type="text"
-                placeholder="url gambar ( http: ... )"
-                className="text-emerald-900 rounded-md dark:text-white"
-                onChange={(e) => {
-                  setAvatar(e.target.value);
-                }}
+                type="file"
+                // placeholder="url gambar ( http: ... )"
+                className="text-emerald-900 bg-white rounded-md dark:text-white"
+                // onChange={(e) => {
+                //   setAvatar(e.target.value);
+                // }}
               />
             </div>
           </section>
