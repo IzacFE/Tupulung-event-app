@@ -1,12 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import HomeMenu from "../components/HomeMenu";
 import PrEvCard from "../components/PrEvCard";
 import Search from "../components/search";
+import * as EventServices from "../service/event";
 
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [event, setEvent] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchData = async () => {
+    return await EventServices.get({ limit: 10, page: 1 })
+      .then((res) => {
+        if (res.code === 200) {
+          setEvent(res.data);
+          setIsLoading(false);
+          // console.log(event);
+        } else {
+          // console.log(res);
+        }
+        // setEvent(res.data);
+
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(true);
+      });
+  };
+
+  useEffect(() => {
+    const data = fetchData();
+    // console.log(data);
+  }, []);
+
+  const renderCard = () => {
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    return event.map((value) => (
+      <div key={value.id} className="w-6/12">
+        <Card
+          gambar={value.cover}
+          judul={value.title}
+          tanggal={value.datetime_event}
+          penyelenggara={value.hosted_by}
+        />
+      </div>
+    ));
+  };
   return (
     <div className={styles.container}>
       {/* search */}
@@ -30,49 +74,7 @@ export default function Home() {
 
       <section>
         <div className="container mx-auto max-w-6xl">
-          <div className="flex space-x-10 ">
-            <div className="w-6/12 ">
-              <Card
-                gambar="https://i1.sndcdn.com/avatars-ylM4tanwBXJZhjWb-X76mWw-t500x500.jpg"
-                judul="meet and great actor international"
-                tanggal="rabu, 22 April 2022"
-                penyelenggara="MTv Production"
-                jumlahPeserta="30"
-              />
-            </div>
-            <div className="w-6/12">
-              <Card
-                gambar="/undraw.png"
-                judul="spotify event music international"
-                tanggal="rabu, 22 April 2022"
-                penyelenggara="MTv Production"
-                jumlahPeserta="30"
-              />
-            </div>
-          </div>
-          <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700"></div>
-        </div>
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex space-x-10 ">
-            <div className="w-6/12 ">
-              <Card
-                gambar="https://i1.sndcdn.com/avatars-ylM4tanwBXJZhjWb-X76mWw-t500x500.jpg"
-                judul="meet and great actor international"
-                tanggal="rabu, 22 April 2022"
-                penyelenggara="MTv Production"
-                jumlahPeserta="30"
-              />
-            </div>
-            <div className="w-6/12">
-              <Card
-                gambar="/undraw.png"
-                judul="spotify event music international"
-                tanggal="rabu, 22 April 2022"
-                penyelenggara="MTv Production"
-                jumlahPeserta="30"
-              />
-            </div>
-          </div>
+          <div className="flex flex-wrap justify-around">{renderCard()}</div>
           <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700"></div>
         </div>
       </section>
