@@ -1,0 +1,31 @@
+.processSpin {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.processSpin::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  /* background: var(--main-secondary); */
+  border: 10px solid grey;
+  border-top-color: var(--main-secondary);
+  border-radius: 50%;
+  animation: processSpin 1s linear infinite;
+}
+
+@keyframes processSpin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (max-width: 600px) {
+  .processSpin::after {
+    width: 30px;
+    height: 30px;
+  }
+}

@@ -6,6 +6,7 @@ import Tabs from "../../components/Tabs";
 import Accordion from "../../components/Accordion";
 import axios from "axios";
 import Router from "next/router";
+import LoadSpin from "../../components/LoadSpin";
 
 export default function Profile() {
   const [token, setToken] = useState("");
@@ -39,7 +40,6 @@ export default function Profile() {
       setToken(localStorage.getItem("token"));
       fetchProfile();
       fetchEvent();
-      setIsReady(true);
     } else {
       Router.push("/");
     }
@@ -55,8 +55,8 @@ export default function Profile() {
       .catch((err) => {
         alert("error");
         console.log(err);
-      });
-    // .finally(() => setIsReady(true));
+      })
+      .finally(() => setIsReady(true));
   };
 
   const fetchEvent = () => {
@@ -495,7 +495,7 @@ export default function Profile() {
       </div>
     );
   } else {
-    result = <div></div>;
+    result = <LoadSpin />;
   }
   return <>{result}</>;
 }
