@@ -4,12 +4,17 @@ import HomeMenu from "../components/HomeMenu";
 import PrEvCard from "../components/PrEvCard";
 import Search from "../components/search";
 import * as EventServices from "../service/event";
+import Link from "next/link";
 
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [event, setEvent] = useState({});
+
   const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const fetchData = async () => {
     return await EventServices.get({ limit: 10, page: 1 })
@@ -31,22 +36,19 @@ export default function Home() {
       });
   };
 
-  useEffect(() => {
-    const data = fetchData();
-    // console.log(data);
-  }, []);
-
   const renderCard = () => {
     if (isLoading) {
       return <div>Loading...</div>;
     }
     return event.map((value) => (
-      <div key={value.id} className="w-6/12">
+      <div key={value.id} className="w-6/12 mb-7">
         <Card
-          gambar={value.cover}
-          judul={value.title}
-          tanggal={value.datetime_event}
-          penyelenggara={value.hosted_by}
+          id={value.id}
+          image={value.cover}
+          title={value.title}
+          date={value.datetime_event}
+          host={value.hosted_by}
+          attend={value.participants ? value.participants.length : 0}
         />
       </div>
     ));
@@ -60,22 +62,13 @@ export default function Home() {
       </div>
 
       {/* menu */}
-      <div className="container mx-auto">
-        <div className="flex justify-around px-32">
-          <HomeMenu href="/detail/1">Semua</HomeMenu>
-          <HomeMenu>Selebriti</HomeMenu>
-          <HomeMenu>Permainan</HomeMenu>
-          <HomeMenu>Kesehatan</HomeMenu>
-          <HomeMenu>Teknologi</HomeMenu>
-        </div>
-      </div>
-
-      <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700"></div>
+      <HomeMenu />
+      <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700" />
 
       <section>
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-wrap justify-around">{renderCard()}</div>
-          <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700"></div>
+          <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700" />
         </div>
       </section>
     </div>
