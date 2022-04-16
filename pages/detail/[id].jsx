@@ -4,6 +4,7 @@ import * as EventServices from "../../service/event";
 import EventDetail from "../../components/EventDetail";
 import EventSponsor from "../../components/EventSponsor";
 import EventParticipants from "../../components/EventParticipants";
+import EventComments from "../../components/EventComments";
 
 export default function Index() {
   const [event, setEvent] = useState({});
@@ -59,16 +60,6 @@ export default function Index() {
         />
         <EventSponsor />
         <EventParticipants participants={event.participants} />
-      </>
-    );
-  };
-
-  return (
-    <div className="">
-      <div className="max-w-xs md:max-w-3xl  xl:max-w-7xl m-auto">
-        {/* gambar */}
-        {renderDetailSection()}
-
         <section className="mb-20">
           <div className="flex space-x-2 justify-center">
             <button
@@ -80,42 +71,16 @@ export default function Index() {
           </div>
         </section>
 
-        <section className="mb-20">
-          <div className="bg-white rounded-lg  w-auto h-36 dark:bg-slate-900 flex justify-center mb-3">
-            {/* <div className=""> */}
-            <textarea
-              className="
-                form-control
-                block
-                w-full
-                px-3
-                py-1.5
-                text-base
-                font-light
-                text-gray-700
-                bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-                focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none
-                resize-none
-                mt-2 mb-4
-              "
-              id="comment"
-              rows="3"
-              placeholder="apa komentar kamu?"
-            ></textarea>
-            <button
-              type="button"
-              className=" inline-block px-10 py-2.5 bg-orange-400 text-white font-medium text-xs leading-tight rounded  hover:bg-orange-500  focus:bg-orange-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-600  transition duration-150 ease-in-out "
-            >
-              kirim
-            </button>
-            {/* </div> */}
-          </div>
-        </section>
+        <EventComments id={event.id} />
+      </>
+    );
+  };
+
+  return (
+    <div className="">
+      <div className="max-w-xs md:max-w-3xl  xl:max-w-7xl m-auto">
+        {/* gambar */}
+        {renderDetailSection()}
       </div>
     </div>
   );
