@@ -5,6 +5,7 @@ import PrEvCard from "../components/PrEvCard";
 import Search from "../components/search";
 import * as EventServices from "../service/event";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import styles from "../styles/Home.module.css";
 
@@ -14,6 +15,8 @@ export default function Home() {
   const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const nameForm = useRef(null);
+  const Router = useRouter();
+  const { c } = Router.query;
 
   const handleClickEvent = () => {
     const form = nameForm.current;
@@ -27,9 +30,9 @@ export default function Home() {
       page: 1,
       q: search,
       location: location,
+      category_id: c,
     });
-    console.log(search, location);
-  }, [search, location]);
+  }, [search, location, c]);
 
   const fetchData = async (params) => {
     return await EventServices.get(params)

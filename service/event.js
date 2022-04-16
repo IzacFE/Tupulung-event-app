@@ -10,3 +10,7 @@ export function getByID(id) {
 export function searchEvent(params) {
   return api.get("https://tupulung.wildani.com/api/events", params, null);
 }
+
+export function getEventByCategory(params) {
+  return api.get("https://tupulung.wildani.com/api/events", params, null);
+}

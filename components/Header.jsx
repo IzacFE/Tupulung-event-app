@@ -12,7 +12,6 @@ export default function Header() {
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
-    console.log(token);
   }, []);
 
   const logOut = () => {

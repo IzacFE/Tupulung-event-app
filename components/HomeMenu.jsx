@@ -23,7 +23,7 @@ export default function HomeMenu() {
   const populatingCategory = () => {
     if (category.length > 0) {
       return category.map((item, index) => (
-        <Link key={index} href={`/?category=${item.id}`}>
+        <Link key={index} href={`/?c=${item.id}`}>
           <a className=" hover:text-orange-400 ">{item.title}</a>
         </Link>
       ));
@@ -33,7 +33,7 @@ export default function HomeMenu() {
   return (
     <div className="container mx-auto">
       <div className="flex flex-wrap justify-around mx-auto  gap-4 ">
-        <Link key={"semua"} href={`/?category=semua`}>
+        <Link key={"semua"} href={`/`}>
           <a className=" hover:text-orange-400 ">semua</a>
         </Link>
         {populatingCategory()}
