@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "../styles/Tabs.module.css";
 import PrEvCard from "./PrEvCard";
 // import "./App.css";
 
-export default function Tabs() {
+export default function Tabs(props) {
   const [toggleState, setToggleState] = useState(1);
+  const [eventData, setEventData] = useState([]);
+
+  useEffect(() => {
+    if (props.data) {
+      setEventData(props.data);
+    }
+  });
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -22,18 +29,9 @@ export default function Tabs() {
           }
           onClick={() => toggleTab(1)}
         >
-          Milik Saya
+          Acara Saya
         </button>
-        <button
-          className={
-            toggleState === 2
-              ? `${styles.tabs} ${styles.activeTabs} bg-white text-orange-400 dark:bg-slate-700`
-              : `${styles.tabs} text-emerald-900 bg-neutral-100 dark:bg-slate-900 dark:text-slate-500`
-          }
-          onClick={() => toggleTab(2)}
-        >
-          Diikuti
-        </button>
+
         <button
           className={
             toggleState === 3
@@ -54,19 +52,19 @@ export default function Tabs() {
               : styles.content
           }
         >
-          <PrEvCard />
-          <PrEvCard />
-          <PrEvCard />
-        </div>
-
-        <div
-          className={
-            toggleState === 2
-              ? `${styles.content} ${styles.activeContent}`
-              : styles.content
-          }
-        >
-          <PrEvCard />
+          {eventData.map((item) => {
+            return (
+              <PrEvCard
+                image={item.cover}
+                date={item.datetime_event}
+                location={item.location}
+                title={item.title}
+                hosted={item.hosted_by}
+                description={item.description}
+                participant={item.participants}
+              />
+            );
+          })}
         </div>
 
         <div
@@ -76,16 +74,7 @@ export default function Tabs() {
               : styles.content
           }
         >
-          <h2>Content 3</h2>
-          <hr />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos sed
-            nostrum rerum laudantium totam unde adipisci incidunt modi alias!
-            Accusamus in quia odit aspernatur provident et ad vel distinctio
-            recusandae totam quidem repudiandae omnis veritatis nostrum
-            laboriosam architecto optio rem, dignissimos voluptatum beatae
-            aperiam voluptatem atque. Beatae rerum dolores sunt.
-          </p>
+          {props.children}
         </div>
       </div>
     </div>
