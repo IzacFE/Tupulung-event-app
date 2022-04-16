@@ -7,10 +7,12 @@ import Accordion from "../../components/Accordion";
 import axios from "axios";
 import Router from "next/router";
 import LoadSpin from "../../components/LoadSpin";
+import ProcessSpin from "../../components/ProcessSpin";
 
 export default function Profile() {
   const [token, setToken] = useState("");
   const [isReady, setIsReady] = useState(false);
+  const [isProcess, setIsProcess] = useState(false);
   // const [user]
 
   // the result of data fetching (profile, user events, followed events)
@@ -84,6 +86,7 @@ export default function Profile() {
     formData.append("dob", dob);
     console.log(formData);
 
+    setIsProcess(true);
     axios
       .put(`/api/users/${localStorage.getItem("id")}`, formData, {
         headers: {
@@ -99,7 +102,8 @@ export default function Profile() {
       .catch((err) => {
         console.log(err);
         console.log("error");
-      });
+      })
+      .finally(setIsProcess(false));
   };
 
   const newEvent = () => {
@@ -113,6 +117,7 @@ export default function Profile() {
     formData.append("description", description);
     console.log(formData);
 
+    setIsProcess(true);
     axios
       .post("/api/events", formData, {
         headers: {
@@ -128,20 +133,21 @@ export default function Profile() {
       .catch((err) => {
         console.log(err);
         console.log("error");
-      });
-    // console.log(title);
-    // console.log(hosted_by);
-    // console.log(cover);
-    // console.log(datetime_event);
-    // console.log(+category_id);
-    // console.log(location);
-    // console.log(description);
+      })
+      .finally(setIsProcess(false));
+  };
+
+  const processSpin = () => {
+    if (isProcess) {
+      return <ProcessSpin />;
+    }
   };
 
   let result;
   if (isReady) {
     result = (
       <div className="w-4/5" id={styles["profileContainer"]}>
+        {processSpin()}
         <section className="" id={styles["profile"]}>
           <h2
             className="text-emerald-900 dark:text-neutral-100"
@@ -156,6 +162,7 @@ export default function Profile() {
               backgroundImage: `url(${profile.avatar})`,
             }}
           />
+
           <h2
             className="text-emerald-900 dark:text-neutral-100 text-center text-3xl"
             id={styles["profileName"]}
@@ -168,7 +175,7 @@ export default function Profile() {
           <div className="w-full " id={styles["eventsNumber"]}>
             <section id={styles["attends"]}>
               <h2>Lahir</h2>
-              <h3>{profile.dob}</h3>
+              <h3>{profile.dob.slice(0, 10)}</h3>
             </section>
             <section id={styles["host"]}>
               <h2>Alamat</h2>
@@ -358,7 +365,7 @@ export default function Profile() {
                 </div>
 
                 <div className={`${styles.formpart} w-full`}>
-                  <label htmlFor="">Diselenggarakn oleh</label>
+                  <label htmlFor="">Diselenggarakan oleh</label>
                   <input
                     type="text"
                     className="rounded-md"
