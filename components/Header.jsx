@@ -80,6 +80,7 @@ export default function Header() {
                 />
               </Menu.Button>
             </div>
+            {/* Profile dropdown */}
             <Menu.Items className="origin-top-right absolute right-0 mt-5 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
               <Menu.Item>
                 <Link href="/profile/user">
@@ -158,7 +159,6 @@ export default function Header() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {themeChanger()}
                 {authenticationButton()}
-                {/* Profile dropdown */}
               </div>
             </div>
           </div>

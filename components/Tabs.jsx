@@ -13,11 +13,6 @@ export default function Tabs(props) {
       setEventData(props.data);
     }
   });
-  //   const dataShare = () => {};
-
-  //   const milikSayaEvents = (data) => {
-
-  //   };
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -25,7 +20,6 @@ export default function Tabs(props) {
 
   return (
     <div className="bg-white dark:bg-slate-700" id={styles["container"]}>
-      {console.log(props.data)}
       <div className={styles.blocTabs}>
         <button
           className={
@@ -35,18 +29,9 @@ export default function Tabs(props) {
           }
           onClick={() => toggleTab(1)}
         >
-          Milik Saya
+          Acara Saya
         </button>
-        <button
-          className={
-            toggleState === 2
-              ? `${styles.tabs} ${styles.activeTabs} bg-white text-orange-400 dark:bg-slate-700`
-              : `${styles.tabs} text-emerald-900 bg-neutral-100 dark:bg-slate-900 dark:text-slate-500`
-          }
-          onClick={() => toggleTab(2)}
-        >
-          Diikuti
-        </button>
+
         <button
           className={
             toggleState === 3
@@ -76,19 +61,10 @@ export default function Tabs(props) {
                 title={item.title}
                 hosted={item.hosted_by}
                 description={item.description}
+                participant={item.participants}
               />
             );
           })}
-        </div>
-
-        <div
-          className={
-            toggleState === 2
-              ? `${styles.content} ${styles.activeContent}`
-              : styles.content
-          }
-        >
-          <PrEvCard />
         </div>
 
         <div

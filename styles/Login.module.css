@@ -37,6 +37,12 @@
   padding-right: 10px;
 }
 
+.radbtn {
+  display: flex;
+  width: 50% !important;
+  min-width: 250px;
+}
+
 .gender div {
   display: flex;
   flex-direction: row !important;

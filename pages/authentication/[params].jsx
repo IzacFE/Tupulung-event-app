@@ -13,16 +13,17 @@ export default function Login() {
   const router = useRouter();
   const { params } = router.query;
 
-  const [token, setToken] = useState(false);
+  // const [token, setToken] = useState(false);
   // Login and Register input states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   // Register Only input states
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
+  const [dob, setDob] = useState("");
   const [address, setAddress] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [gender, setGender] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -60,16 +61,22 @@ export default function Login() {
       });
   };
 
-  const handleRegister = async () => {
-    await axios
-      .post(`/api/users`, {
-        name,
-        email,
-        password,
-        gender,
-        address,
-        avatar,
-        dob: "1999-09-09",
+  const handleRegister = () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("gender", gender);
+    formData.append("address", address);
+    formData.append("avatar", avatar);
+    formData.append("dob", dob);
+    console.log(formData);
+
+    axios
+      .post(`/api/users`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
       .then((response) => {
         console.log(response);
@@ -80,6 +87,13 @@ export default function Login() {
         console.log(err);
         console.log("error");
       });
+    // console.log(name);
+    // console.log(email);
+    // console.log(password);
+    // console.log(gender);
+    // console.log(address);
+    // console.log(avatar);
+    // console.log(dob);
   };
 
   let result;
@@ -152,7 +166,6 @@ export default function Login() {
         </p>
 
         <form action="" id={styles["formInput"]}>
-          {/* id={styles["inputForm"]} */}
           <section>
             <div>
               <label htmlFor="" className="text-emerald-900 dark:text-white">
@@ -198,40 +211,15 @@ export default function Login() {
               />
             </div>
 
-            <div className={styles.gender}>
-              <label htmlFor="" className="text-emerald-900 dark:text-white">
-                Jenis kelamin
-              </label>
-              <div>
-                <input
-                  type="radio"
-                  name="gender"
-                  value={"Pria"}
-                  className="rounded-md"
-                  id="Permainan"
-                />
-                <label
-                  htmlFor="Permainan"
-                  className="text-emerald-900 dark:text-white"
-                >
-                  Pria
-                </label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  name="gender"
-                  value={"Wanita"}
-                  className="rounded-md"
-                  id="Selebriti"
-                />
-                <label
-                  htmlFor="Selebriti"
-                  className="text-emerald-900 dark:text-white"
-                >
-                  Wanita
-                </label>
-              </div>
+            <div className="text-emerald-900 dark:text-white">
+              <label htmlFor="">Tanggal Lahir</label>
+              <input
+                type="date"
+                className="rounded-md"
+                onChange={(e) => {
+                  setDob(e.target.value);
+                }}
+              />
             </div>
 
             {/* <div>
@@ -270,14 +258,57 @@ export default function Login() {
               </label>
               <input
                 type="file"
-                // placeholder="url gambar ( http: ... )"
                 className="text-emerald-900 bg-white rounded-md dark:text-white"
-                // onChange={(e) => {
-                //   setAvatar(e.target.value);
-                // }}
+                onInput={(e) => {
+                  setAvatar(e.target.files[0]);
+                }}
               />
             </div>
           </section>
+
+          <div className={styles.gender}>
+            <label htmlFor="" className="text-emerald-900 dark:text-white">
+              Jenis kelamin
+            </label>
+            <div className={styles.radbtn}>
+              <div>
+                <input
+                  type="radio"
+                  name="gender"
+                  value={"Pria"}
+                  className="rounded-md"
+                  id="Permainan"
+                  onClick={(e) => {
+                    setGender(e.target.value);
+                  }}
+                />
+                <label
+                  htmlFor="Permainan"
+                  className="text-emerald-900 dark:text-white"
+                >
+                  Pria
+                </label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="gender"
+                  value={"Wanita"}
+                  className="rounded-md"
+                  id="Selebriti"
+                  onClick={(e) => {
+                    setGender(e.target.value);
+                  }}
+                />
+                <label
+                  htmlFor="Selebriti"
+                  className="text-emerald-900 dark:text-white"
+                >
+                  Wanita
+                </label>
+              </div>
+            </div>
+          </div>
         </form>
 
         <Button
