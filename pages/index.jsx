@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Card from "../components/Card";
 import HomeMenu from "../components/HomeMenu";
 import PrEvCard from "../components/PrEvCard";
@@ -10,14 +10,29 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [event, setEvent] = useState({});
-
+  const [search, setSearch] = useState("");
+  const [location, setLocation] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const nameForm = useRef(null);
 
-  const fetchData = async () => {
-    return await EventServices.get({ limit: 10, page: 1 })
+  const handleClickEvent = () => {
+    const form = nameForm.current;
+    setSearch(form["search"].value);
+    setLocation(form["location"].value);
+  };
+
+  useEffect(() => {
+    fetchData({
+      limit: 10,
+      page: 1,
+      q: search,
+      location: location,
+    });
+    console.log(search, location);
+  }, [search, location]);
+
+  const fetchData = async (params) => {
+    return await EventServices.get(params)
       .then((res) => {
         if (res.code === 200) {
           setEvent(res.data);
@@ -54,11 +69,60 @@ export default function Home() {
     ));
   };
   return (
-    <div className={styles.container}>
+    <div className="container px-7 md:px-14 lg:px-28">
       {/* search */}
 
       <div>
-        <Search />
+        <div className="flex justify-center">
+          <div className="my-3 mt-9  ">
+            {/* <div className="input-group relative flex w-full mb-4"> */}
+            <form
+              ref={nameForm}
+              className="input-group relative flex w-full mb-4"
+            >
+              <input
+                type="search"
+                className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="button-addon2"
+                name="search"
+              />
+              <input
+                type="search"
+                className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
+                placeholder="location"
+                aria-label="Search"
+                aria-describedby="button-addon2"
+                name="location"
+              />
+
+              <button
+                className="btn inline-block px-6 py-2.5 bg-orange-400 text-white font-medium text-xs leading-tight uppercase rounded-r-sm shadow-md hover:bg-orange-500 hover:shadow-lg focus:bg-orange-600  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+                type="button"
+                id="button-addon2"
+                onClick={() => handleClickEvent()}
+              >
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  data-prefix="fas"
+                  data-icon="search"
+                  className="w-4"
+                  role="img"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                  ></path>
+                </svg>
+              </button>
+            </form>
+            {/* </div> */}
+          </div>
+        </div>
       </div>
 
       {/* menu */}

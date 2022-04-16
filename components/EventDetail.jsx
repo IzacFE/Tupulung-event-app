@@ -13,7 +13,7 @@ export default function EventDetail(props) {
       <section className="mb-24">
         <div className="flex flex-wrap justify-between">
           <div
-            className="sm:w-full md:w-6/12 rounded-sm bg-cover"
+            className="w-full md:w-6/12 rounded-sm bg-cover"
             style={{
               backgroundImage: `url(${props.image})`,
             }}
