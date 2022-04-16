@@ -23,9 +23,9 @@ export default function EventComments(props) {
       return comments.map((item, index) => (
         <div
           key={index}
-          className="bg-white rounded-lg  w-auto h-auto dark:bg-slate-900 justify-center mb-3 p-5 flex items-center"
+          className="bg-white rounded-lg w-auto h-auto dark:bg-slate-900 justify-center mb-3 p-5 flex items-center flex-wrap md:flex-nowrap  "
         >
-          <div className="py-8 px-8 max-w-sm  space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 lg:w-4/12">
+          <div className=" py-8 px-8 max-w-sm space-y-2 sm:py-4 sm:flex  sm:items-center sm:space-y-0 sm:space-x-6 lg:w-4/12">
             <div
               className="bg-cover block mx-auto h-16 w-16 rounded-full sm:mx-0 sm:shrink-0 "
               style={{
@@ -33,11 +33,15 @@ export default function EventComments(props) {
               }}
             />
             <div>
-              <p className="text-lg">{item.user.name}</p>
-              <p className="text-sm font-thin">{item.created_at}</p>
+              <p className="text-lg text-center md:text-left">
+                {item.user.name}
+              </p>
+              <p className="text-sm font-normal text-slate-400">
+                {item.created_at}
+              </p>
             </div>
           </div>
-          <div className="w-full">
+          <div className="w-full text-center md:text-left mb-5">
             <p>{item.comment}</p>
           </div>
         </div>

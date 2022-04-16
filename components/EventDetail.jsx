@@ -10,10 +10,11 @@ export default function EventDetail(props) {
         </p>
         <p className="text-sm font-medium">{props.host}</p>
       </div>
+
       <section className="mb-24">
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap md:flex-nowrap md:justify-between">
           <div
-            className="w-full md:w-6/12 rounded-sm bg-cover"
+            className="mb-6 md:mb-0 inline-block w-full h-48 md:w-6/12 md:h-auto bg-cover shrink-0 rounded-md "
             style={{
               backgroundImage: `url(${props.image})`,
             }}
@@ -61,7 +62,7 @@ export default function EventDetail(props) {
                   <p className="text-slate-50 text-sm ">{props.date}</p>
                 </div>
               </div>
-              <div className="w-full h-0.5 my-7 bg-slate-300" />
+              <div className="w-full h-0.5 my-7 bg-slate-300 dark:bg-slate-400" />
               <div className="flex items-center space-x-4">
                 <div>
                   <svg
