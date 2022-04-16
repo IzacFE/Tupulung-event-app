@@ -77,8 +77,8 @@ export default function Index() {
   };
 
   return (
-    <div className="">
-      <div className="max-w-xs md:max-w-3xl  xl:max-w-7xl m-auto">
+    <div className="container px-7 md:px-14 lg:px-28">
+      <div className="">
         {/* gambar */}
         {renderDetailSection()}
       </div>
