@@ -69,7 +69,7 @@ export default function Home() {
     ));
   };
   return (
-    <div className="container px-7 md:px-14 lg:px-28">
+    <div className="container px-4 md:px-10 lg:px-24">
       {/* search */}
 
       <div>

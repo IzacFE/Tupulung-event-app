@@ -32,7 +32,7 @@ export default function HomeMenu() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-wrap justify-around mx-auto space-x-10 space-x-reverse ">
+      <div className="flex flex-wrap justify-around mx-auto  gap-4 ">
         <Link key={"semua"} href={`/?category=semua`}>
           <a className=" hover:text-orange-400 ">semua</a>
         </Link>
