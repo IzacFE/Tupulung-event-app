@@ -19,12 +19,31 @@ export default function HomeMenu() {
       alert("Something error, in category : " + response.error);
     }
   };
+  const categoryConvert = (title) => {
+    if (title === "Education") {
+      return "Edukasi";
+    }
+    if (title === "Technology") {
+      return "Teknologi";
+    }
+    if (title === "Health") {
+      return "Kesehatan";
+    }
+    if (title === "Games") {
+      return "Permainan";
+    }
+    if (title === "Celebrity") {
+      return "Selebriti";
+    }
+  };
 
   const populatingCategory = () => {
     if (category.length > 0) {
       return category.map((item, index) => (
         <Link key={index} href={`/?c=${item.id}`}>
-          <a className=" hover:text-orange-400 ">{item.title}</a>
+          <a className=" text-emerald-900 hover:text-orange-400 dark:text-slate-100 dark:hover:text-orange-400 ">
+            {categoryConvert(item.title)}
+          </a>
         </Link>
       ));
     }
@@ -34,7 +53,9 @@ export default function HomeMenu() {
     <div className="container mx-auto">
       <div className="flex flex-wrap justify-around mx-auto  gap-4 ">
         <Link key={"semua"} href={`/`}>
-          <a className=" hover:text-orange-400 ">semua</a>
+          <a className="text-emerald-900 hover:text-orange-400 dark:text-slate-100 dark:hover:text-orange-400">
+            Semua
+          </a>
         </Link>
         {populatingCategory()}
       </div>
