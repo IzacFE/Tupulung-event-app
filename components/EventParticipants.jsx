@@ -39,8 +39,8 @@ export default function EventParticipants(props) {
 
   return (
     <section className="mb-3">
-      <p className="text-xl  font-medium mb-3">Peserta</p>
-      <div className="container flex mx-auto ">{populatingParticipants()}</div>
+      <p className="text-xl  font-medium mb-3 mt-10">Peserta</p>
+      <div className="container mx-auto">{populatingParticipants()}</div>
     </section>
   );
 }

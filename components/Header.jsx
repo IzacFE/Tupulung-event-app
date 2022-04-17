@@ -48,19 +48,28 @@ export default function Header() {
 
     if (currentTheme === "dark") {
       return (
-        <MoonIcon
-          className={`${styles.moon} w-9 h-9`}
-          role="button"
-          onClick={() => setTheme("light")}
-        />
+        <>
+          <MoonIcon
+            className={`${styles.moon} w-9 h-9`}
+            role="button"
+            onClick={() => setTheme("light")}
+          />
+        </>
       );
     } else {
       return (
-        <SunIcon
-          className={`${styles.sun} w-9 h-9`}
-          role="button"
-          onClick={() => setTheme("dark")}
-        />
+        <>
+          <SunIcon
+            className={`${styles.sun} w-9 h-9 dark:hidden`}
+            role="button"
+            onClick={() => setTheme("dark")}
+          />
+          <MoonIcon
+            className={`${styles.moon} w-9 h-9 hidden dark:block`}
+            role="button"
+            onClick={() => setTheme("light")}
+          />
+        </>
       );
     }
   };
