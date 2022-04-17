@@ -550,6 +550,26 @@ export default function Profile() {
   return <>{result}</>;
 }
 
+// const [delAlert, setDelAlert] = useState(false);
+
+// {
+//   delAlert && (
+//     <Modal
+//       text={"akun"}
+//       exit={() => {
+//         setDelAlert(false);
+//       }}
+//       cancel={() => {
+//         setDelAlert(false);
+//       }}
+//       delete={() => {
+//         deleteAcc();
+//         console.log("deleted");
+//       }}
+//     />
+//   );
+// }
+
 // const [title, setTitle] = useState("");
 // const [hosted_by, setHosted_by] = useState("");
 // const [cover, setCover] = useState("");

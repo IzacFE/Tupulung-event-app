@@ -4,3 +4,12 @@
   font-family: "Pacifico";
   font-size: 1.7rem;
 }
+
+.sun {
+  color: #fb923c !important;
+}
+
+.moon {
+  /* color: orangered !important; */
+  background-color: transparent !important;
+}
