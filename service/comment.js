@@ -7,11 +7,11 @@ export function getComments(id) {
   });
 }
 
-export function postComment(id, body) {
+export function postComments(id, body, headers) {
   return api.post(
     `https://tupulung.wildani.com/api/events/${id}/comments`,
     null,
-    null,
+    headers,
     body
   );
 }

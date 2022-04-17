@@ -19,7 +19,7 @@ export default function Index() {
   useEffect(() => {
     if (!router.isReady) return;
     fetchData(id);
-  }, [router.isReady]);
+  }, [router.isReady, event]);
 
   const onClikJoinEvent = () => {
     if (localStorage.getItem("id")) {
