@@ -10,6 +10,7 @@ import LoadSpin from "../../components/LoadSpin";
 import ProcessSpin from "../../components/ProcessSpin";
 import { TrashIcon } from "@heroicons/react/outline";
 import Modal from "../../components/Modal";
+import moment from "moment";
 
 export default function Profile() {
   const [token, setToken] = useState("");
@@ -202,7 +203,11 @@ export default function Profile() {
           <div className="w-full " id={styles["eventsNumber"]}>
             <section id={styles["attends"]}>
               <h2>Lahir</h2>
-              <h3>{profile.dob ? profile.dob.slice(0, 10) : "not ready"}</h3>
+              <h3>
+                {profile.dob
+                  ? moment(profile.dob.slice(0, 10)).format(" Do MMMM YYYY")
+                  : "not ready"}
+              </h3>
             </section>
             <section id={styles["host"]}>
               <h2>Alamat</h2>
