@@ -12,7 +12,7 @@ export default function Tabs(props) {
     if (props.data) {
       setEventData(props.data);
     }
-  });
+  }, []);
 
   const toggleTab = (index) => {
     setToggleState(index);
