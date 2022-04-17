@@ -98,7 +98,7 @@ export default function Header() {
               </Menu.Item>
               <Menu.Item>
                 <div
-                  className="block px-4 py-2 text-sm text-emerald-900 hover:bg-orange-400 hover:text-white"
+                  className="block px-4 py-2 text-sm text-emerald-900 hover:bg-orange-400 hover:text-white "
                   onClick={() => {
                     logOut();
                   }}
