@@ -1,12 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { getComments } from "../service/comment";
+import { getComments, postComments } from "../service/comment";
+import { useRouter } from "next/router";
+import Router from "next/router";
+import qs from "querystring";
+
 export default function EventComments(props) {
   const [comments, setComments] = useState([]);
+  const [inputComment, setInputComment] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const { id } = router.query;
 
   useEffect(() => {
     fetchDataComments(props.id);
-  }, []);
+  }, [comments]);
+
+  const onClickPostComment = () => {
+    if (localStorage.getItem("id")) {
+      postComment();
+    } else {
+      Router.push("/authentication/login");
+    }
+  };
+
+  const postComment = async () => {
+    if (inputComment.length > 0) {
+      return await postComments(id, qs.stringify({ comment: inputComment }), {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "content-type": "application/x-www-form-urlencoded",
+      })
+        .then((result) => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
 
   const fetchDataComments = async (id) => {
     const response = await getComments(id);
@@ -55,6 +83,9 @@ export default function EventComments(props) {
       <div className="bg-white rounded-lg  w-auto h-auto dark:bg-slate-900 justify-center mb-10 p-5">
         {/* <div className=""> */}
         <textarea
+          onChange={(e) => {
+            setInputComment(e.target.value);
+          }}
           className="
           form-control
           block
@@ -63,7 +94,7 @@ export default function EventComments(props) {
           py-1.5
           text-base
           font-light
-          text-gray-700
+          text-gray-700 dark:text-slate-50
           bg-white bg-clip-padding
           dark:bg-slate-900
           border border-solid border-gray-300
@@ -83,6 +114,9 @@ export default function EventComments(props) {
         <button
           type="button"
           className="inline-block px-10 py-2.5 bg-orange-400 text-white font-medium text-xs leading-tight rounded  hover:bg-orange-500  focus:bg-orange-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-600  transition duration-150 ease-in-out"
+          onClick={() => {
+            onClickPostComment();
+          }}
         >
           kirim
         </button>
