@@ -24,7 +24,9 @@ export default function Index() {
   //     setIsLoading(false);
   //   }
   //   console.log(data);
+  // console.log(data;)
   // }, []);
+
   useEffect(() => {
     if (isReady) {
       fetchData(query.id);
