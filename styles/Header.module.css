@@ -13,3 +13,7 @@
   /* color: orangered !important; */
   background-color: transparent !important;
 }
+
+.menuBar {
+  cursor: pointer;
+}

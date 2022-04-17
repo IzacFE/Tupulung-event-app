@@ -98,16 +98,10 @@ export default function Header() {
                   </a>
                 </Link>
               </Menu.Item>
-              <Menu.Item>
-                <Link href="#">
-                  <a className="block px-4 py-2 text-sm text-emerald-900 hover:bg-orange-400 hover:text-white">
-                    Acara saya
-                  </a>
-                </Link>
-              </Menu.Item>
+
               <Menu.Item>
                 <div
-                  className="block px-4 py-2 text-sm text-emerald-900 hover:bg-orange-400 hover:text-white "
+                  className={`${styles.menuBar} block px-4 py-2 text-sm text-emerald-900 hover:bg-orange-400 hover:text-white`}
                   onClick={() => {
                     logOut();
                   }}
