@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React from "react";
+import moment from "moment";
 
 export default function EventDetail(props) {
   return (
@@ -59,7 +59,11 @@ export default function EventDetail(props) {
                   <h5 className="text-white text-sm leading-tight font-medium ">
                     waktu
                   </h5>
-                  <p className="text-slate-50 text-sm ">{props.date}</p>
+                  <p className="text-slate-50 text-sm ">
+                    {moment(props.date.slice(0, 10)).format(
+                      "dddd, Do MMMM YYYY"
+                    )}
+                  </p>
                 </div>
               </div>
               <div className="w-full h-0.5 my-7 bg-slate-300 dark:bg-slate-400" />

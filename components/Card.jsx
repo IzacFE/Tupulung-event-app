@@ -14,7 +14,7 @@ export default function Card(props) {
         />
         <div className="py-4 w-full">
           <p className="text-xs lg:text-sm mb-2">
-            {moment(props.date).format("dddd, Do MMMM YYYY, h:mm:ss a")}
+            {moment(props.date.slice(0, 10)).format("dddd, Do MMMM YYYY")}
           </p>
           <p className="text-sm lg:text-lg font-bold text-emerald-900 dark:text-slate-100 ">
             {props.title.length > 25
