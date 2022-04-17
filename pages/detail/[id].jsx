@@ -6,11 +6,9 @@ import EventSponsor from "../../components/EventSponsor";
 import EventParticipants from "../../components/EventParticipants";
 import EventComments from "../../components/EventComments";
 import LoadSpin from "../../components/LoadSpin";
-import axios from "axios";
 
 export default function Index() {
   const [event, setEvent] = useState({});
-  // const { query, isReady } = useRouter();
   const router = useRouter();
   const { id } = router.query;
   const [isLoading, setIsLoading] = useState(true);
@@ -30,34 +28,27 @@ export default function Index() {
   //   console.log(data);
   // }, []);
   useEffect(() => {
-    // if (isReady) {
-    fetchData();
-    // query.id
-    // }
-  }, []);
+    if (!router.isReady) return;
+    fetchData(id);
+  }, [router.isReady]);
 
-  async function fetchData() {
-    await axios
-      .get(`/api/events/${id}`)
-      // EventServices.getByID(id)
-      .then((response) => {
-        setEvent(response.data);
-        console.log(response.data);
-        // if (event.cover) {
-        //   setIsLoading(false);
-        // }
+  async function fetchData(id) {
+    console.log(id);
+    await EventServices.getByID(id)
+      .then((res) => {
+        setEvent(res.data);
+        setIsLoading(false); // <- kurang iki ketika berhasil mendapatkan data event, status loading e kudu di ganti
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(setIsLoading(false));
+      });
   }
 
-  let result;
-  if (isLoading) {
-    result = <LoadSpin />;
-  } else {
-    result = (
+  const renderDetailSection = () => {
+    if (isLoading) {
+      return <LoadSpin />;
+    }
+    return (
       <>
         <EventDetail
           title={event.title}
@@ -83,15 +74,33 @@ export default function Index() {
         <EventComments id={event.id} />
       </>
     );
-  }
+  };
 
   return (
     <div className="container px-7 md:px-14 lg:px-28">
       <div className="">
         {/* gambar */}
-        {/* {renderDetailSection()} */}
-        {result}
+        {renderDetailSection()}
       </div>
     </div>
   );
 }
+
+// useEffect(() => {
+//   if (!router.isReady) return;
+//   fetchData();
+// }, [router.isReady]);
+
+// function fetchData() {
+//   EventServices.getByID(id)
+//     .then((res) => {
+//       setEvent(res.data);
+//       if (event.cover) {
+//         setIsLoading(false);
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     })
+//     .finally(setIsLoading(false));
+// }
