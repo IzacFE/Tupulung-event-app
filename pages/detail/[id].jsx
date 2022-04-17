@@ -9,6 +9,7 @@ import EventSponsor from "../../components/EventSponsor";
 import EventParticipants from "../../components/EventParticipants";
 import EventComments from "../../components/EventComments";
 import LoadSpin from "../../components/LoadSpin";
+import ProcessSpin from "../../components/ProcessSpin";
 
 import Accordion from "../../components/Accordion";
 import Button from "../../components/Button";
