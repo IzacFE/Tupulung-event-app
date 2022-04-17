@@ -60,12 +60,12 @@ export default function Profile() {
       .catch((err) => {
         alert("error");
         console.log(err);
-      })
-      .finally(() => setIsReady(true));
+      });
+    // .finally(() => setIsReady(true));
   };
 
-  const fetchEvent = () => {
-    axios
+  const fetchEvent = async () => {
+    await axios
       .get(`/api/users/${localStorage.getItem("id")}/events?limit=0&page=1`)
       .then((response) => {
         setMyEvent(response.data.data);
@@ -74,8 +74,8 @@ export default function Profile() {
       .catch((err) => {
         alert("error");
         console.log(err);
-      });
-    // .finally(() => setIsReady(true));
+      })
+      .finally(() => setIsReady(true));
   };
 
   const editProfile = () => {
@@ -87,7 +87,7 @@ export default function Profile() {
     formData.append("address", address);
     formData.append("avatar", avatar);
     formData.append("dob", dob);
-    console.log(formData);
+    // console.log(formData);
 
     setIsProcess(true);
     axios
@@ -100,7 +100,6 @@ export default function Profile() {
       .then((response) => {
         console.log(response);
         alert("berhasil");
-        Router.push("/authentication/login");
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +130,6 @@ export default function Profile() {
       .then((response) => {
         console.log(response);
         alert("berhasil");
-        Router.push("/authentication/login");
       })
       .catch((err) => {
         console.log(err);
@@ -146,10 +144,28 @@ export default function Profile() {
     }
   };
 
-  const deleteWarn = () => {
-    // if (deleteWarn) {
-    console.log("deleted");
-    // }
+  const deleteAcc = async () => {
+    setIsProcess(true);
+    await axios
+      .delete(`/api/users/${localStorage.getItem("id")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("berhasil hapus akun");
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        localStorage.removeItem("dark");
+        window.location.reload();
+        Router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("gagal menghapus akun");
+      })
+      .finally(setIsProcess(false));
   };
 
   let result;
@@ -184,7 +200,7 @@ export default function Profile() {
           <div className="w-full " id={styles["eventsNumber"]}>
             <section id={styles["attends"]}>
               <h2>Lahir</h2>
-              <h3>{profile.dob.slice(0, 10)}</h3>
+              <h3>{profile.dob ? profile.dob.slice(0, 10) : "not ready"}</h3>
             </section>
             <section id={styles["host"]}>
               <h2>Alamat</h2>
@@ -342,22 +358,27 @@ export default function Profile() {
           </Accordion>
 
           <div
-            className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600`}
+            className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600 hover:bg-white hover:text-red-600 border-2 border-red-600`}
             onClick={() => {
-              deleteWarn();
+              // deleteWarn();
               setDelAlert(true);
             }}
           >
-            <TrashIcon className={`${styles.trashIc} `} />
+            <TrashIcon className={`${styles.trashIc}`} />
             <h2>Hapus akun</h2>
           </div>
           {delAlert && (
             <Modal
+              text={"akun"}
               exit={() => {
                 setDelAlert(false);
               }}
               cancel={() => {
                 setDelAlert(false);
+              }}
+              delete={() => {
+                deleteAcc();
+                console.log("deleted");
               }}
             />
           )}
@@ -528,3 +549,207 @@ export default function Profile() {
   }
   return <>{result}</>;
 }
+
+// const [delAlert, setDelAlert] = useState(false);
+
+// {
+//   delAlert && (
+//     <Modal
+//       text={"akun"}
+//       exit={() => {
+//         setDelAlert(false);
+//       }}
+//       cancel={() => {
+//         setDelAlert(false);
+//       }}
+//       delete={() => {
+//         deleteAcc();
+//         console.log("deleted");
+//       }}
+//     />
+//   );
+// }
+
+// const [title, setTitle] = useState("");
+// const [hosted_by, setHosted_by] = useState("");
+// const [cover, setCover] = useState("");
+// const [datetime_event, setDatetime_event] = useState("");
+// const [category_id, setCategory_id] = useState(0);
+// const [location, setLocation] = useState("");
+// const [description, setDescription] = useState("");
+
+//  const editEvent = () => {
+//    const formData = new FormData();
+//    formData.append("title", title);
+//    formData.append("hosted_by", hosted_by);
+//    formData.append("cover", cover);
+//    formData.append("datetime_event", datetime_event);
+//    formData.append("category_id", +category_id);
+//    formData.append("location", location);
+//    formData.append("description", description);
+//    console.log(formData);
+
+//    setIsProcess(true);
+//    axios
+//      .put(`/api/events/${id dari si event}`, formData, {
+//        headers: {
+//          "Content-Type": "multipart/form-data",
+//          Authorization: `Bearer ${localStorage.getItem("token")}`,
+//        },
+//      })
+//      .then((response) => {
+//        console.log(response);
+//        alert("berhasil");
+//      })
+//      .catch((err) => {
+//        console.log(err);
+//        console.log("error");
+//      })
+//      .finally(setIsProcess(false));
+//  };
+
+/* <Accordion text={"Edit Acara"}>
+  <form>
+    <div className={`${styles.formpart} w-full`}>
+      <label htmlFor="">Judul acara</label>
+      <input
+        type="text"
+        className="rounded-md"
+        onChange={(e) => {
+          setTitle(e.target.value);
+        }}
+      />
+    </div>
+
+    <div className={`${styles.formpart} w-full`}>
+      <label htmlFor="">Diselenggarakan oleh</label>
+      <input
+        type="text"
+        className="rounded-md"
+        onChange={(e) => {
+          setHosted_by(e.target.value);
+        }}
+      />
+    </div>
+
+    <div className={`${styles.formpart} w-full`}>
+      <label htmlFor="">Deskripsi acara</label>
+      <input
+        type="text"
+        className="rounded-md"
+        onChange={(e) => {
+          setDescription(e.target.value);
+        }}
+      />
+    </div>
+
+    <div className={`${styles.formpart} ${styles.radioButton} w-full`}>
+      <label htmlFor="">Kategori acara</label>
+      <section>
+        <input
+          type="radio"
+          name="kategori"
+          value={1}
+          className="rounded-md"
+          id="Education"
+          onClick={(e) => {
+            setCategory_id(e.target.value);
+          }}
+        />
+        <label htmlFor="Education">Edukasi</label>
+      </section>
+      <section>
+        <input
+          type="radio"
+          name="kategori"
+          value={2}
+          className="rounded-md"
+          id="Teknologi"
+          onClick={(e) => {
+            setCategory_id(e.target.value);
+          }}
+        />
+        <label htmlFor="Education">Teknologi</label>
+      </section>
+      <section>
+        <input
+          type="radio"
+          name="kategori"
+          value={3}
+          className="rounded-md"
+          id="Kesehatan"
+          onClick={(e) => {
+            setCategory_id(e.target.value);
+          }}
+        />
+        <label htmlFor="Education">Kesehatan</label>
+      </section>
+      <section>
+        <input
+          type="radio"
+          name="kategori"
+          value={4}
+          className="rounded-md"
+          id="Permainan"
+          onClick={(e) => {
+            setCategory_id(e.target.value);
+          }}
+        />
+        <label htmlFor="Education">Permainan</label>
+      </section>
+      <section>
+        <input
+          type="radio"
+          name="kategori"
+          value={5}
+          className="rounded-md"
+          id="Selebriti"
+          onClick={(e) => {
+            setCategory_id(e.target.value);
+          }}
+        />
+        <label htmlFor="Education">Selebriti</label>
+      </section>
+    </div>
+
+    <div className={`${styles.formpart} w-full`}>
+      <label htmlFor="">Lokasi</label>
+      <input
+        type="text"
+        className="rounded-md"
+        onChange={(e) => {
+          setLocation(e.target.value);
+        }}
+      />
+    </div>
+
+    <div className={`${styles.formpart} w-full`}>
+      <label htmlFor="">Gambar Cover</label>
+      <input
+        type="file"
+        className="rounded-md"
+        onInput={(e) => {
+          setCover(e.target.files[0]);
+        }}
+      />
+    </div>
+
+    <div className={`${styles.formpart} w-full`}>
+      <label htmlFor="">Tanggal Acara</label>
+      <input
+        type="date"
+        className="rounded-md"
+        onChange={(e) => {
+          setDatetime_event(e.target.value);
+        }}
+      />
+    </div>
+  </form>
+  <Button
+    text={"Edit"}
+    onClick={() => {
+      // editEvent();
+      console.log("edit acara");
+    }}
+  />
+</Accordion>; */
