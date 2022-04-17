@@ -75,16 +75,16 @@ export default function Home() {
               >
                 <input
                   type="search"
-                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
-                  placeholder="Search"
+                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 dark:text-slate-50 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
+                  placeholder="kata kunci"
                   aria-label="Search"
                   aria-describedby="button-addon2"
                   name="search"
                 />
                 <input
                   type="search"
-                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
-                  placeholder="location"
+                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 dark:text-slate-50 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
+                  placeholder="lokasi"
                   aria-label="Search"
                   aria-describedby="button-addon2"
                   name="location"

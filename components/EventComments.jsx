@@ -29,9 +29,7 @@ export default function EventComments(props) {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "content-type": "application/x-www-form-urlencoded",
       })
-        .then((result) => {
-          alert("sukses");
-        })
+        .then((result) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -96,7 +94,7 @@ export default function EventComments(props) {
           py-1.5
           text-base
           font-light
-          text-gray-700
+          text-gray-700 dark:text-slate-50
           bg-white bg-clip-padding
           dark:bg-slate-900
           border border-solid border-gray-300

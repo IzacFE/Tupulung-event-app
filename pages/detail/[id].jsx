@@ -8,6 +8,7 @@ import EventComments from "../../components/EventComments";
 import LoadSpin from "../../components/LoadSpin";
 import Router from "next/router";
 import { joinEvents } from "../../service/event";
+import swal from "sweetalert";
 
 export default function Index() {
   const [event, setEvent] = useState({});
@@ -34,7 +35,7 @@ export default function Index() {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     })
       .then((result) => {
-        alert(result.data);
+        swal("selamat!", "kamu berhasil ikut event", "success");
       })
       .catch((err) => {
         console.log(err);
