@@ -100,6 +100,7 @@ export default function Profile() {
       .then((response) => {
         console.log(response);
         alert("berhasil");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -130,6 +131,7 @@ export default function Profile() {
       .then((response) => {
         console.log(response);
         alert("berhasil");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

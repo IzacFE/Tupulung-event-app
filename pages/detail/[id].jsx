@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 import * as EventServices from "../../service/event";
 import styles from "../../styles/Detail.module.css";
 
@@ -17,7 +18,6 @@ import Router from "next/router";
 import { joinEvents } from "../../service/event";
 import swal from "sweetalert";
 
-
 export default function Index() {
   const [event, setEvent] = useState({});
   const router = useRouter();
@@ -27,14 +27,21 @@ export default function Index() {
   const [participants, setParticipants] = useState([]);
 
   const [delAlert, setDelAlert] = useState(false);
+  const [isProcess, setIsProcess] = useState(false);
+
+  // Edit form data
+  const [title, setTitle] = useState("");
+  const [hosted_by, setHosted_by] = useState("");
+  const [cover, setCover] = useState("");
+  const [datetime_event, setDatetime_event] = useState("");
+  const [category_id, setCategory_id] = useState(0);
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     if (!router.isReady) return;
     fetchData(id);
-    if (localStorage.getItem("id")) {
-      setUserId(localStorage.getItem("id"));
-    }
-  }, [router.isReady, event]);
+  }, [router.isReady]);
 
   const onClikJoinEvent = () => {
     if (localStorage.getItem("id")) {
@@ -56,9 +63,10 @@ export default function Index() {
       });
   };
 
-
   async function fetchData(id) {
-    console.log(id);
+    if (localStorage.getItem("id")) {
+      setUserId(localStorage.getItem("id"));
+    }
     await EventServices.getByID(id)
       .then((res) => {
         setEvent(res.data);
@@ -70,35 +78,74 @@ export default function Index() {
       });
   }
 
+  const editEvent = () => {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("hosted_by", hosted_by);
+    formData.append("cover", cover);
+    formData.append("datetime_event", datetime_event);
+    formData.append("category_id", +category_id);
+    formData.append("location", location);
+    formData.append("description", description);
+    console.log(formData);
+
+    setIsProcess(true);
+    axios
+      .put(`/api/events/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        // console.log(response);
+        alert("berhasil");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("error");
+      })
+      .finally(setIsProcess(false));
+
+    // fetchData(id);
+  };
+
   const deleteEvent = async () => {
-    // setIsProcess(true);
-    // await axios
-    //   .delete(`/api/users/${localStorage.getItem("id")}`, {
-    //     headers: {
-    //       Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //     alert("berhasil hapus acara");
-    //     // localStorage.removeItem("token");
-    //     // localStorage.removeItem("id");
-    //     // localStorage.removeItem("dark");
-    //     window.location.reload();
-    //     Router.push("/");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert("gagal menghapus akun");
-    //   });
-    // .finally(setIsProcess(false));
+    setIsProcess(true);
+    await axios
+      .delete(`/api/events/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("berhasil hapus acara");
+        // localStorage.removeItem("token");
+        // localStorage.removeItem("id");
+        // localStorage.removeItem("dark");
+        Router.push("/");
+        // window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("gagal menghapus akun");
+      })
+      .finally(setIsProcess(false));
+  };
+
+  const processSpin = () => {
+    if (isProcess) {
+      return <ProcessSpin />;
+    }
   };
 
   const eventAuth = () => {
-    console.log(userId);
     if (event.user_id == userId) {
       return (
         <>
+          {processSpin}
           <Accordion text={"Edit Acara"}>
             <div className={styles.formContainer}>
               <form>
@@ -243,6 +290,7 @@ export default function Index() {
                 text={"Edit Acara"}
                 onClick={() => {
                   // editEvent();
+                  editEvent();
                   console.log("edit acara");
                 }}
               />
@@ -267,7 +315,7 @@ export default function Index() {
                   }}
                   delete={() => {
                     deleteEvent();
-                    console.log("deleted");
+                    // console.log("deleted");
                   }}
                 />
               )}
