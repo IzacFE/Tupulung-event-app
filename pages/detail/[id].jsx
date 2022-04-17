@@ -24,7 +24,7 @@ export default function Index() {
     await EventServices.getByID(id)
       .then((res) => {
         setEvent(res.data);
-        setIsLoading(false); // <- kurang iki ketika berhasil mendapatkan data event, status loading e kudu di ganti
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -72,22 +72,3 @@ export default function Index() {
     </div>
   );
 }
-
-// useEffect(() => {
-//   if (!router.isReady) return;
-//   fetchData();
-// }, [router.isReady]);
-
-// function fetchData() {
-//   EventServices.getByID(id)
-//     .then((res) => {
-//       setEvent(res.data);
-//       if (event.cover) {
-//         setIsLoading(false);
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     })
-//     .finally(setIsLoading(false));
-// }
