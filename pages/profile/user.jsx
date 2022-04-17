@@ -8,6 +8,7 @@ import axios from "axios";
 import Router from "next/router";
 import LoadSpin from "../../components/LoadSpin";
 import ProcessSpin from "../../components/ProcessSpin";
+import { TrashIcon } from "@heroicons/react/outline";
 
 export default function Profile() {
   const [token, setToken] = useState("");
@@ -249,15 +250,11 @@ export default function Profile() {
                           name="gender"
                           value={"Pria"}
                           className="rounded-md text-emerald-900 dark:text-white"
-                          id="Permainan"
                           onClick={(e) => {
                             setGender(e.target.value);
                           }}
                         />
-                        <label
-                          htmlFor="Permainan"
-                          className="text-emerald-900 dark:text-white ml-2"
-                        >
+                        <label className="text-emerald-900 dark:text-white ml-2">
                           Pria
                         </label>
                       </div>
@@ -267,15 +264,11 @@ export default function Profile() {
                           name="gender"
                           value={"Wanita"}
                           className="rounded-md text-emerald-900 dark:text-white"
-                          id="Selebriti"
                           onClick={(e) => {
                             setGender(e.target.value);
                           }}
                         />
-                        <label
-                          htmlFor="Selebriti"
-                          className="text-emerald-900 dark:text-white ml-2"
-                        >
+                        <label className="text-emerald-900 dark:text-white ml-2">
                           Wanita
                         </label>
                       </div>
@@ -340,7 +333,11 @@ export default function Profile() {
             </article>
           </Accordion>
 
-          <Button text={"Delete"} />
+          <div className={`${styles.buttonDelete} w-full rounded-md p-2`}>
+            <TrashIcon className={`${styles.trashIc} `} />
+            <h2>Hapus akun</h2>
+          </div>
+          {/* <Button text={"Delete"} /> */}
         </section>
 
         <section id={styles["events"]}>

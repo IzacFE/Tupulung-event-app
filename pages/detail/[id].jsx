@@ -5,10 +5,14 @@ import EventDetail from "../../components/EventDetail";
 import EventSponsor from "../../components/EventSponsor";
 import EventParticipants from "../../components/EventParticipants";
 import EventComments from "../../components/EventComments";
+import LoadSpin from "../../components/LoadSpin";
+import axios from "axios";
 
 export default function Index() {
   const [event, setEvent] = useState({});
-  const { query, isReady } = useRouter();
+  // const { query, isReady } = useRouter();
+  const router = useRouter();
+  const { id } = router.query;
   const [isLoading, setIsLoading] = useState(true);
   const [participants, setParticipants] = useState([]);
   // const [event, setEvent] = useState({});
@@ -26,29 +30,34 @@ export default function Index() {
   //   console.log(data);
   // }, []);
   useEffect(() => {
-    if (isReady) {
-      fetchData(query.id);
-    }
-  });
+    // if (isReady) {
+    fetchData();
+    // query.id
+    // }
+  }, []);
 
-  async function fetchData(id) {
-    await EventServices.getByID(id)
-      .then((res) => {
-        setEvent(res.data);
-        if (event.cover) {
-          setIsLoading(false);
-        }
+  async function fetchData() {
+    await axios
+      .get(`/api/events/${id}`)
+      // EventServices.getByID(id)
+      .then((response) => {
+        setEvent(response.data);
+        console.log(response.data);
+        // if (event.cover) {
+        //   setIsLoading(false);
+        // }
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(setIsLoading(false));
   }
 
-  const renderDetailSection = () => {
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
-    return (
+  let result;
+  if (isLoading) {
+    result = <LoadSpin />;
+  } else {
+    result = (
       <>
         <EventDetail
           title={event.title}
@@ -74,13 +83,14 @@ export default function Index() {
         <EventComments id={event.id} />
       </>
     );
-  };
+  }
 
   return (
     <div className="container px-7 md:px-14 lg:px-28">
       <div className="">
         {/* gambar */}
-        {renderDetailSection()}
+        {/* {renderDetailSection()} */}
+        {result}
       </div>
     </div>
   );

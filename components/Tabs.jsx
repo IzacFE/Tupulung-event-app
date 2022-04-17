@@ -52,9 +52,10 @@ export default function Tabs(props) {
               : styles.content
           }
         >
-          {eventData.map((item) => {
+          {eventData.map((item, index) => {
             return (
               <PrEvCard
+                key={index}
                 image={item.cover}
                 date={item.datetime_event}
                 location={item.location}
