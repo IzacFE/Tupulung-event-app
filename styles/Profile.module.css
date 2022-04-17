@@ -1,7 +1,8 @@
 #profileContainer {
-  margin-top: 5vh;
+  margin-top: 11vh;
   margin-bottom: 5vh;
-  max-width: 1520px;
+  max-width: 1216px;
+  /* width: 100%; */
   display: flex;
 }
 
@@ -23,11 +24,13 @@
 
 #profileImage {
   margin-top: 4vh;
-  width: 220px;
-  height: 220px;
+  width: 15vw;
+  height: 15vw;
+  max-width: 220px;
+  max-height: 220px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 #profileName {
@@ -49,15 +52,133 @@
   width: 50%;
 }
 
+.formpart {
+  display: flex;
+  flex-direction: column;
+}
+
+.formpart label {
+  font-size: 1.2rem;
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+
+.formpart input {
+  border: 1px solid rgb(148, 148, 148);
+  padding: 5px 10px;
+  /* border-radius: ; */
+}
+
+.radioButton section label {
+  font-size: 1.1rem;
+  margin-left: 10px;
+}
+
 /* #attends {
 } */
-
-#events {
-  width: 65%;
-}
 
 #tabEvents {
   font-size: 2.3rem;
   font-weight: 500;
   margin-bottom: 5vh;
+}
+
+.buttonDelete {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  background-color: red;
+  color: white;
+}
+
+.trashIc {
+  height: 2rem;
+}
+
+@media (max-width: 1300px) {
+  #profileContainer {
+    margin-top: 120px;
+  }
+
+  #profile {
+    padding: 1.5rem;
+  }
+
+  #events {
+    padding: 1rem;
+  }
+
+  #profileHead {
+    font-size: 1.7rem;
+  }
+
+  #tabEvents {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 950px) {
+  #profileContainer {
+    flex-direction: column;
+    margin-top: 10vh;
+  }
+
+  #profile {
+    width: 100%;
+    padding: 2rem;
+    border-right: none;
+  }
+
+  #events {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  #profileImage {
+    width: 50vw;
+    height: 50vw;
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 220px;
+    max-height: 220px;
+  }
+
+  #profileContainer {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    max-width: 1520px;
+    width: 100%;
+    display: flex;
+  }
+
+  #profileHead {
+    font-size: 2.3rem;
+    font-weight: 500;
+  }
+
+  /* #eventsNumber {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+
+  .formpart label {
+    font-size: 1rem;
+    margin-bottom: 7px;
+    margin-top: 7px;
+  }
+
+  .formpart input {
+    border: 1px solid rgb(148, 148, 148);
+    padding: 5px 10px;
+  }
+
+  .radioButton section label {
+    font-size: 1.1rem;
+  } */
 }
