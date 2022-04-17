@@ -35,7 +35,7 @@ export default function Accordion(props) {
               : `text-emerald-900 dark:text-neutral-100`
           }
         >
-          Edit Profile
+          {props.text}
         </h2>
         {icon()}
       </header>
