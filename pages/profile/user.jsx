@@ -9,11 +9,13 @@ import Router from "next/router";
 import LoadSpin from "../../components/LoadSpin";
 import ProcessSpin from "../../components/ProcessSpin";
 import { TrashIcon } from "@heroicons/react/outline";
+import Modal from "../../components/Modal";
 
 export default function Profile() {
   const [token, setToken] = useState("");
   const [isReady, setIsReady] = useState(false);
   const [isProcess, setIsProcess] = useState(false);
+  const [delAlert, setDelAlert] = useState(false);
   // const [user]
 
   // the result of data fetching (profile, user events, followed events)
@@ -144,6 +146,12 @@ export default function Profile() {
     }
   };
 
+  const deleteWarn = () => {
+    // if (deleteWarn) {
+    console.log("deleted");
+    // }
+  };
+
   let result;
   if (isReady) {
     result = (
@@ -184,7 +192,7 @@ export default function Profile() {
             </section>
           </div>
 
-          <Accordion>
+          <Accordion text={"Edit Profile"}>
             <article className="px-3 pb-3">
               <form>
                 <div className={`${styles.formpart} w-full`}>
@@ -333,10 +341,27 @@ export default function Profile() {
             </article>
           </Accordion>
 
-          <div className={`${styles.buttonDelete} w-full rounded-md p-2`}>
+          <div
+            className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600`}
+            onClick={() => {
+              deleteWarn();
+              setDelAlert(true);
+            }}
+          >
             <TrashIcon className={`${styles.trashIc} `} />
             <h2>Hapus akun</h2>
           </div>
+          {delAlert && (
+            <Modal
+              exit={() => {
+                setDelAlert(false);
+              }}
+              cancel={() => {
+                setDelAlert(false);
+              }}
+            />
+          )}
+
           {/* <Button text={"Delete"} /> */}
         </section>
 
