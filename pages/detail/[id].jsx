@@ -6,6 +6,8 @@ import EventSponsor from "../../components/EventSponsor";
 import EventParticipants from "../../components/EventParticipants";
 import EventComments from "../../components/EventComments";
 import LoadSpin from "../../components/LoadSpin";
+import Router from "next/router";
+import { joinEvents } from "../../service/event";
 
 export default function Index() {
   const [event, setEvent] = useState({});
@@ -18,6 +20,26 @@ export default function Index() {
     if (!router.isReady) return;
     fetchData(id);
   }, [router.isReady]);
+
+  const onClikJoinEvent = () => {
+    if (localStorage.getItem("id")) {
+      joinEvent();
+    } else {
+      Router.push("/authentication/login");
+    }
+  };
+
+  const joinEvent = async () => {
+    return await joinEvents(id, {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    })
+      .then((result) => {
+        alert(result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   async function fetchData(id) {
     console.log(id);
@@ -52,6 +74,9 @@ export default function Index() {
             <button
               type="button"
               className="inline-block px-28 py-2.5 bg-orange-400 text-white font-medium text-xs leading-tight rounded  hover:bg-orange-500  focus:bg-orange-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-600  transition duration-150 ease-in-out"
+              onClick={() => {
+                onClikJoinEvent();
+              }}
             >
               ikut event
             </button>
@@ -65,10 +90,7 @@ export default function Index() {
 
   return (
     <div className="container px-7 md:px-14 lg:px-28">
-      <div className="">
-        {/* gambar */}
-        {renderDetailSection()}
-      </div>
+      <div className="">{renderDetailSection()}</div>
     </div>
   );
 }
