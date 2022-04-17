@@ -13,20 +13,7 @@ export default function Index() {
   const { id } = router.query;
   const [isLoading, setIsLoading] = useState(true);
   const [participants, setParticipants] = useState([]);
-  // const [event, setEvent] = useState({});
-  // const [isLoading, setIsLoading] = useState(true);
 
-  // const fetchData = () => {
-  //   return EventServices.get({ limit: 10, page: 1 });
-  // };
-  // useEffect(() => {
-  //   const data = fetchData();
-  //   if (data.code === 200) {
-  //     setEvent(data.data);
-  //     setIsLoading(false);
-  //   }
-  //   console.log(data);
-  // }, []);
   useEffect(() => {
     if (!router.isReady) return;
     fetchData(id);
