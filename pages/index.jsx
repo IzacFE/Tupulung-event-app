@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Card from "../components/Card";
 import HomeMenu from "../components/HomeMenu";
 import PrEvCard from "../components/PrEvCard";
-import Search from "../components/search";
+// import Search from "../components/search";
 
 import * as EventServices from "../service/event";
 import Link from "next/link";
