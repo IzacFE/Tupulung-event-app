@@ -17,6 +17,7 @@ export default function PrEvCard(props) {
     <section
       className="w-full bg-neutral-100 dark:bg-slate-800 p-2"
       id={styles["container"]}
+      onClick={props.onClick}
     >
       <div
         className="rounded-md bg-emerald-900"
@@ -45,10 +46,10 @@ export default function PrEvCard(props) {
           <p className="text-emerald-900 dark:text-neutral-100">
             {participantCheck()} peserta
           </p>
-          {/* <div>
+          <div>
             <HeartIcon className="h-5 w-5 text-red-600" />
             <h3 className="text-emerald-900 dark:text-neutral-100">5</h3>
-          </div> */}
+          </div>
         </div>
       </section>
     </section>
