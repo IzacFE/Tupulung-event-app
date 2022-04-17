@@ -14,3 +14,11 @@ export function searchEvent(params) {
 export function getEventByCategory(params) {
   return api.get("https://tupulung.wildani.com/api/events", params, null);
 }
+
+export function joinEvents(id, header) {
+  return api.post(
+    `https://tupulung.wildani.com/api/events/join/${id}`,
+    null,
+    header
+  );
+}

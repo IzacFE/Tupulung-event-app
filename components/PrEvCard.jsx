@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import styles from "../styles/PrEvCard.module.css";
 import { HeartIcon } from "@heroicons/react/outline";
 
@@ -17,6 +18,7 @@ export default function PrEvCard(props) {
     <section
       className="w-full bg-neutral-100 dark:bg-slate-800 p-2"
       id={styles["container"]}
+      onClick={props.onClick}
     >
       <div
         className="rounded-md bg-emerald-900"
@@ -27,7 +29,7 @@ export default function PrEvCard(props) {
       />
       <section className="" id={styles["eventDetail"]}>
         <h2 className="text-emerald-900 dark:text-neutral-100">
-          {props.date.slice(0, 10)}
+          {moment(props.date.slice(0, 10)).format("dddd, Do MMMM YYYY")}
         </h2>
         <h2 className="text-emerald-900 dark:text-neutral-100">
           {props.location}

@@ -1,3 +1,4 @@
+import Router from "next/router";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "../styles/Tabs.module.css";
@@ -9,9 +10,7 @@ export default function Tabs(props) {
   const [eventData, setEventData] = useState([]);
 
   useEffect(() => {
-    if (props.data) {
-      setEventData(props.data);
-    }
+    setEventData(props.data);
   }, []);
 
   const toggleTab = (index) => {
@@ -63,6 +62,9 @@ export default function Tabs(props) {
                 hosted={item.hosted_by}
                 description={item.description}
                 participant={item.participants}
+                onClick={() => {
+                  Router.push(`/detail/${item.id}`);
+                }}
               />
             );
           })}

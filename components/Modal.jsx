@@ -18,7 +18,7 @@ export default function Modal(props) {
         </div> */}
         <div className={`${styles.body}`}>
           <p className="text-emerald-900 dark:text-neutral-100">
-            Klik tombol OK untuk menghapus akun ini
+            Klik tombol OK untuk menghapus {props.text} ini
           </p>
         </div>
         <div className={`${styles.footer}`}>
@@ -28,7 +28,9 @@ export default function Modal(props) {
           >
             Batal
           </button>
-          <button className="bg-red-600">OK</button>
+          <button className="bg-red-600" onClick={props.delete}>
+            OK
+          </button>
         </div>
       </section>
     </div>

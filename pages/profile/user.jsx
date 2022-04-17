@@ -10,6 +10,7 @@ import LoadSpin from "../../components/LoadSpin";
 import ProcessSpin from "../../components/ProcessSpin";
 import { TrashIcon } from "@heroicons/react/outline";
 import Modal from "../../components/Modal";
+import moment from "moment";
 
 export default function Profile() {
   const [token, setToken] = useState("");
@@ -60,12 +61,12 @@ export default function Profile() {
       .catch((err) => {
         alert("error");
         console.log(err);
-      })
-      .finally(() => setIsReady(true));
+      });
+    // .finally(() => setIsReady(true));
   };
 
-  const fetchEvent = () => {
-    axios
+  const fetchEvent = async () => {
+    await axios
       .get(`/api/users/${localStorage.getItem("id")}/events?limit=0&page=1`)
       .then((response) => {
         setMyEvent(response.data.data);
@@ -74,8 +75,8 @@ export default function Profile() {
       .catch((err) => {
         alert("error");
         console.log(err);
-      });
-    // .finally(() => setIsReady(true));
+      })
+      .finally(() => setIsReady(true));
   };
 
   const editProfile = () => {
@@ -87,7 +88,7 @@ export default function Profile() {
     formData.append("address", address);
     formData.append("avatar", avatar);
     formData.append("dob", dob);
-    console.log(formData);
+    // console.log(formData);
 
     setIsProcess(true);
     axios
@@ -100,7 +101,7 @@ export default function Profile() {
       .then((response) => {
         console.log(response);
         alert("berhasil");
-        Router.push("/authentication/login");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +132,7 @@ export default function Profile() {
       .then((response) => {
         console.log(response);
         alert("berhasil");
-        Router.push("/authentication/login");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -146,10 +147,28 @@ export default function Profile() {
     }
   };
 
-  const deleteWarn = () => {
-    // if (deleteWarn) {
-    console.log("deleted");
-    // }
+  const deleteAcc = async () => {
+    setIsProcess(true);
+    await axios
+      .delete(`/api/users/${localStorage.getItem("id")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("berhasil hapus akun");
+        localStorage.removeItem("token");
+        localStorage.removeItem("id");
+        localStorage.removeItem("dark");
+        window.location.reload();
+        Router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("gagal menghapus akun");
+      })
+      .finally(setIsProcess(false));
   };
 
   let result;
@@ -184,7 +203,11 @@ export default function Profile() {
           <div className="w-full " id={styles["eventsNumber"]}>
             <section id={styles["attends"]}>
               <h2>Lahir</h2>
-              <h3>{profile.dob.slice(0, 10)}</h3>
+              <h3>
+                {profile.dob
+                  ? moment(profile.dob.slice(0, 10)).format(" Do MMMM YYYY")
+                  : "not ready"}
+              </h3>
             </section>
             <section id={styles["host"]}>
               <h2>Alamat</h2>
@@ -342,22 +365,27 @@ export default function Profile() {
           </Accordion>
 
           <div
-            className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600`}
+            className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600 hover:bg-white hover:text-red-600 border-2 border-red-600`}
             onClick={() => {
-              deleteWarn();
+              // deleteWarn();
               setDelAlert(true);
             }}
           >
-            <TrashIcon className={`${styles.trashIc} `} />
+            <TrashIcon className={`${styles.trashIc}`} />
             <h2>Hapus akun</h2>
           </div>
           {delAlert && (
             <Modal
+              text={"akun"}
               exit={() => {
                 setDelAlert(false);
               }}
               cancel={() => {
                 setDelAlert(false);
+              }}
+              delete={() => {
+                deleteAcc();
+                console.log("deleted");
               }}
             />
           )}

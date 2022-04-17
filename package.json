@@ -12,10 +12,12 @@
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
     "axios": "^0.26.1",
+    "moment": "^2.29.2",
     "next": "12.1.4",
     "next-themes": "^0.1.1",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.4",

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Disclosure, Menu } from "@headlessui/react";
-import { LightBulbIcon } from "@heroicons/react/outline";
+import { MoonIcon, SunIcon } from "@heroicons/react/outline";
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
@@ -48,19 +48,28 @@ export default function Header() {
 
     if (currentTheme === "dark") {
       return (
-        <LightBulbIcon
-          className="w-7 h-7 bg-black"
-          role="button"
-          onClick={() => setTheme("light")}
-        />
+        <>
+          <MoonIcon
+            className={`${styles.moon} w-9 h-9`}
+            role="button"
+            onClick={() => setTheme("light")}
+          />
+        </>
       );
     } else {
       return (
-        <LightBulbIcon
-          className="w-7 h-7 bg-white"
-          role="button"
-          onClick={() => setTheme("dark")}
-        />
+        <>
+          <SunIcon
+            className={`${styles.sun} w-9 h-9 dark:hidden`}
+            role="button"
+            onClick={() => setTheme("dark")}
+          />
+          <MoonIcon
+            className={`${styles.moon} w-9 h-9 hidden dark:block`}
+            role="button"
+            onClick={() => setTheme("light")}
+          />
+        </>
       );
     }
   };
@@ -158,6 +167,7 @@ export default function Header() {
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {themeChanger()}
+                {/* <Toggle /> */}
                 {authenticationButton()}
               </div>
             </div>

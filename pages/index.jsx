@@ -20,22 +20,29 @@ export default function Home() {
   const nameForm = useRef(null);
   const Router = useRouter();
   const { c } = Router.query;
+  let [page, setPage] = useState(1);
 
   const handleClickEvent = () => {
     const form = nameForm.current;
     setSearch(form["search"].value);
     setLocation(form["location"].value);
   };
+  const handleClickNext = () => {
+    setPage(page + 1);
+  };
+  const handleClickPrev = () => {
+    setPage(page - 1);
+  };
 
   useEffect(() => {
     fetchData({
       limit: 10,
-      page: 1,
+      page: page,
       q: search,
       location: location,
       category_id: c,
     });
-  }, [search, location, c]);
+  }, [search, location, c, page]);
 
   const fetchData = async (params) => {
     return await EventServices.get(params)
@@ -75,16 +82,16 @@ export default function Home() {
               >
                 <input
                   type="search"
-                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
-                  placeholder="Search"
+                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 dark:text-slate-50 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
+                  placeholder="kata kunci"
                   aria-label="Search"
                   aria-describedby="button-addon2"
                   name="search"
                 />
                 <input
                   type="search"
-                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
-                  placeholder="location"
+                  className="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 dark:text-slate-50 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-400 focus:outline-none dark:bg-slate-900 dark:border-slate-900"
+                  placeholder="lokasi"
                   aria-label="Search"
                   aria-describedby="button-addon2"
                   name="location"
@@ -143,6 +150,23 @@ export default function Home() {
               })}
             </div>
             <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700" />
+          </div>
+        </section>
+
+        <section>
+          <div className="text-center mb-10 ">
+            <button
+              className=" text-emerald-900 dark:text-slate-100 hover:text-orange-400 dark:hover:text-orange-400"
+              onClick={() => handleClickPrev()}
+            >
+              <span aria-hidden="true">&laquo;</span>Sebelumnya
+            </button>
+            <button
+              className="mx-12 text-emerald-900 dark:text-slate-100 hover:text-orange-400 dark:hover:text-orange-400"
+              onClick={() => handleClickNext()}
+            >
+              Selanjutnya<span aria-hidden="true">&raquo;</span>
+            </button>
           </div>
         </section>
       </div>

@@ -25,7 +25,7 @@ export default function Accordion(props) {
         className={`${styles.header} w-full bg-white dark:bg-slate-700 border-2-gray`}
         onClick={() => {
           setClicked(!clicked);
-          console.log(clicked);
+          // console.log(clicked);
         }}
       >
         <h2

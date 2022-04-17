@@ -221,20 +221,6 @@ export default function Login() {
                 }}
               />
             </div>
-
-            {/* <div>
-              <label htmlFor="" className="text-emerald-900 dark:text-white">
-                Gender
-              </label>
-              <input
-                type="text"
-                placeholder="Pria / Wanita"
-                className="text-emerald-900 rounded-md dark:text-white"
-                onChange={(e) => {
-                  setGender(e.target.value);
-                }}
-              />
-            </div> */}
           </section>
 
           <section>

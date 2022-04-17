@@ -6,7 +6,9 @@ export default function LoadSpin() {
     <div className={styles.spinnerScreen}>
       <section>
         <div className={`${styles.spinner} border-4 border-orange-400`}></div>
-        <h1 className="text-emerald-900">Tunggu Sebentar</h1>
+        <h1 className="text-emerald-900 dark:text-neutral-200">
+          Tunggu Sebentar
+        </h1>
       </section>
     </div>
   );
