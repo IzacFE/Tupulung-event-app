@@ -1,8 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+.logo {
+  width: 40px;
+}
 
-#logo {
-  font-family: "Pacifico";
-  font-size: 1.7rem;
+.logoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logoContainer h3 {
+  font-size: 1.5rem;
 }
 
 .sun {

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Disclosure, Menu } from "@headlessui/react";
-import { MoonIcon, SunIcon } from "@heroicons/react/outline";
+import { ClipboardListIcon, MoonIcon, SunIcon } from "@heroicons/react/outline";
 import styles from "../styles/Header.module.css";
 
 export default function Header() {
@@ -152,7 +152,12 @@ export default function Header() {
                   id={styles["logo"]}
                 >
                   <Link href="/">
-                    <a>Tupulung</a>
+                    <a className="font-bold">
+                      <div className={styles.logoContainer}>
+                        <ClipboardListIcon className={styles.logo} />
+                        <h3>Tupulung</h3>
+                      </div>
+                    </a>
                   </Link>
                 </h2>
               </div>
