@@ -5,7 +5,7 @@ import * as EventServices from "../../service/event";
 import styles from "../../styles/Detail.module.css";
 
 import EventDetail from "../../components/EventDetail";
-import EventSponsor from "../../components/EventSponsor";
+// import EventSponsor from "../../components/EventSponsor";
 import EventParticipants from "../../components/EventParticipants";
 import EventComments from "../../components/EventComments";
 import LoadSpin from "../../components/LoadSpin";
@@ -25,7 +25,7 @@ export default function Index() {
   const { id } = router.query;
   const [userId, setUserId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [participants, setParticipants] = useState([]);
+  // const [participants, setParticipants] = useState([]);
 
   const [delAlert, setDelAlert] = useState(false);
   const [isProcess, setIsProcess] = useState(false);
@@ -88,7 +88,7 @@ export default function Index() {
     formData.append("category_id", +category_id);
     formData.append("location", location);
     formData.append("description", description);
-    console.log(formData);
+    // console.log(formData);
 
     setIsProcess(true);
     axios
@@ -121,7 +121,7 @@ export default function Index() {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert("berhasil hapus acara");
         // localStorage.removeItem("token");
         // localStorage.removeItem("id");
@@ -341,9 +341,9 @@ export default function Index() {
           location={event.location}
           description={event.description}
         />
-        <EventSponsor />
+        {/* <EventSponsor /> */}
         {eventAuth()}
-        {console.log(event.user_id)}
+        {/* {console.log(event.user_id)} */}
         <EventParticipants participants={event.participants} />
         <section className="mb-10">
           <div className="flex space-x-2 justify-center">

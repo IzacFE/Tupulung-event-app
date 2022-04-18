@@ -49,7 +49,7 @@ export default function Login() {
 
     await axios(config)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         dataSaver(response.data.data);
         alert("berhasil");
         // Router.push("/");
@@ -79,13 +79,14 @@ export default function Login() {
         },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert("berhasil");
         Router.push("/authentication/login");
       })
       .catch((err) => {
         console.log(err);
         console.log("error");
+        alert("gagal register");
       });
     // console.log(name);
     // console.log(email);

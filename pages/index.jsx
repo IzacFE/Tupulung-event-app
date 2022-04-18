@@ -20,29 +20,22 @@ export default function Home() {
   const nameForm = useRef(null);
   const Router = useRouter();
   const { c } = Router.query;
-  let [page, setPage] = useState(1);
 
   const handleClickEvent = () => {
     const form = nameForm.current;
     setSearch(form["search"].value);
     setLocation(form["location"].value);
   };
-  const handleClickNext = () => {
-    setPage(page + 1);
-  };
-  const handleClickPrev = () => {
-    setPage(page - 1);
-  };
 
   useEffect(() => {
     fetchData({
       limit: 10,
-      page: page,
+      page: 1,
       q: search,
       location: location,
       category_id: c,
     });
-  }, [search, location, c, page]);
+  }, [search, location, c]);
 
   const fetchData = async (params) => {
     return await EventServices.get(params)
@@ -150,23 +143,6 @@ export default function Home() {
               })}
             </div>
             <div className=" my-10 mx-10 h-0.5 w-auto bg-slate-200 dark:bg-slate-700" />
-          </div>
-        </section>
-
-        <section>
-          <div className="text-center mb-10 ">
-            <button
-              className=" text-emerald-900 dark:text-slate-100 hover:text-orange-400 dark:hover:text-orange-400"
-              onClick={() => handleClickPrev()}
-            >
-              <span aria-hidden="true">&laquo;</span>Sebelumnya
-            </button>
-            <button
-              className="mx-12 text-emerald-900 dark:text-slate-100 hover:text-orange-400 dark:hover:text-orange-400"
-              onClick={() => handleClickNext()}
-            >
-              Selanjutnya<span aria-hidden="true">&raquo;</span>
-            </button>
           </div>
         </section>
       </div>

@@ -27,7 +27,7 @@ export default function Header() {
         },
       })
       .then((response) => {
-        console.log(response.data.data.user.avatar);
+        // console.log(response.data.data.user.avatar);
         setAvatar(response.data.data.user.avatar);
       })
       .catch((err) => {
