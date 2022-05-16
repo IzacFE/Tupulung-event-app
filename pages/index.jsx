@@ -25,11 +25,11 @@ export default function Home() {
 
   useEffect(() => {
     fetchData({
-      // limit: 10,
-      // page: 1,
-      // q: search,
-      // location: location,
-      // category_id: c,
+      limit: 10,
+      page: 1,
+      q: search,
+      location: location,
+      category_id: c,
     });
   }, [search, location, c]);
 
