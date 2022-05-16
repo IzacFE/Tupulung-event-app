@@ -8,16 +8,16 @@ export function getByID(id) {
 }
 
 export function searchEvent(params) {
-  return api.get("https://tupulung.wildani.com/api/events", params, null);
+  return api.get("https://tupulung.wildani.tech/api/events", params, null);
 }
 
 export function getEventByCategory(params) {
-  return api.get("https://tupulung.wildani.com/api/events", params, null);
+  return api.get("https://tupulung.wildani.tech/api/events", params, null);
 }
 
 export function joinEvents(id, header) {
   return api.post(
-    `https://tupulung.wildani.com/api/events/join/${id}`,
+    `https://tupulung.wildani.tech/api/events/join/${id}`,
     null,
     header
   );

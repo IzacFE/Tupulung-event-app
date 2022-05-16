@@ -3,7 +3,7 @@ import { ThemeProvider } from "next-themes";
 import Layout from "../components/Layout";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://tupulung.wildani.com";
+axios.defaults.baseURL = "https://tupulung.wildani.tech";
 
 function MyApp({ Component, pageProps }) {
   return (

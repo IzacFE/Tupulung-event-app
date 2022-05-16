@@ -17,7 +17,6 @@ export default function Profile() {
   const [isReady, setIsReady] = useState(false);
   const [isProcess, setIsProcess] = useState(false);
   const [delAlert, setDelAlert] = useState(false);
-  // const [user]
 
   // the result of data fetching (profile, user events, followed events)
   const [profile, setProfile] = useState({});
@@ -56,13 +55,11 @@ export default function Profile() {
       .get(`/api/users/${localStorage.getItem("id")}`)
       .then((response) => {
         setProfile(response.data.data);
-        // console.log(response.data.data);
       })
       .catch((err) => {
         alert("error");
         console.log(err);
       });
-    // .finally(() => setIsReady(true));
   };
 
   const fetchEvent = async () => {
@@ -70,7 +67,6 @@ export default function Profile() {
       .get(`/api/users/${localStorage.getItem("id")}/events?limit=0&page=1`)
       .then((response) => {
         setMyEvent(response.data.data);
-        // console.log(response.data.data);
       })
       .catch((err) => {
         alert("error");
@@ -88,7 +84,6 @@ export default function Profile() {
     formData.append("address", address);
     formData.append("avatar", avatar);
     formData.append("dob", dob);
-    // console.log(formData);
 
     setIsProcess(true);
     axios
@@ -119,7 +114,6 @@ export default function Profile() {
     formData.append("category_id", +category_id);
     formData.append("location", location);
     formData.append("description", description);
-    console.log(formData);
 
     setIsProcess(true);
     axios
@@ -130,12 +124,10 @@ export default function Profile() {
         },
       })
       .then((response) => {
-        console.log(response);
         alert("berhasil");
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
         console.log("error");
       })
       .finally(setIsProcess(false));
@@ -367,7 +359,6 @@ export default function Profile() {
           <div
             className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600 hover:bg-white hover:text-red-600 border-2 border-red-600`}
             onClick={() => {
-              // deleteWarn();
               setDelAlert(true);
             }}
           >
@@ -395,12 +386,6 @@ export default function Profile() {
 
         <section id={styles["events"]}>
           <div id={styles["tabContainer"]}>
-            {/* <h2
-              className="text-emerald-900 dark:text-neutral-100"
-              id={styles["tabEvents"]}
-            >
-              Acara Saya
-            </h2> */}
             <Tabs data={myEvent}>
               <form>
                 <div className={`${styles.formpart} w-full`}>

@@ -25,7 +25,6 @@ export default function Index() {
   const { id } = router.query;
   const [userId, setUserId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  // const [participants, setParticipants] = useState([]);
 
   const [delAlert, setDelAlert] = useState(false);
   const [isProcess, setIsProcess] = useState(false);
@@ -88,7 +87,6 @@ export default function Index() {
     formData.append("category_id", +category_id);
     formData.append("location", location);
     formData.append("description", description);
-    // console.log(formData);
 
     setIsProcess(true);
     axios
@@ -99,7 +97,6 @@ export default function Index() {
         },
       })
       .then((response) => {
-        // console.log(response);
         alert("berhasil");
         window.location.reload();
       })
@@ -108,8 +105,6 @@ export default function Index() {
         console.log("error");
       })
       .finally(setIsProcess(false));
-
-    // fetchData(id);
   };
 
   const deleteEvent = async () => {
@@ -121,13 +116,8 @@ export default function Index() {
         },
       })
       .then((response) => {
-        // console.log(response);
         alert("berhasil hapus acara");
-        // localStorage.removeItem("token");
-        // localStorage.removeItem("id");
-        // localStorage.removeItem("dark");
         Router.push("/");
-        // window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -298,7 +288,6 @@ export default function Index() {
               <div
                 className={`${styles.buttonDelete} w-full rounded-md p-2 bg-red-600 hover:bg-white hover:text-red-600 border-2 border-red-600`}
                 onClick={() => {
-                  // deleteWarn();
                   setDelAlert(true);
                 }}
               >
@@ -316,7 +305,6 @@ export default function Index() {
                   }}
                   delete={() => {
                     deleteEvent();
-                    // console.log("deleted");
                   }}
                 />
               )}
@@ -341,9 +329,7 @@ export default function Index() {
           location={event.location}
           description={event.description}
         />
-        {/* <EventSponsor /> */}
         {eventAuth()}
-        {/* {console.log(event.user_id)} */}
         <EventParticipants participants={event.participants} />
         <section className="mb-10">
           <div className="flex space-x-2 justify-center">
@@ -369,61 +355,3 @@ export default function Index() {
     </div>
   );
 }
-
-// const [delAlert, setDelAlert] = useState(false);
-
-// {
-//   delAlert && (
-//     <Modal
-//       text={"akun"}
-//       exit={() => {
-//         setDelAlert(false);
-//       }}
-//       cancel={() => {
-//         setDelAlert(false);
-//       }}
-//       delete={() => {
-//         deleteAcc();
-//         console.log("deleted");
-//       }}
-//     />
-//   );
-// }
-
-// const [title, setTitle] = useState("");
-// const [hosted_by, setHosted_by] = useState("");
-// const [cover, setCover] = useState("");
-// const [datetime_event, setDatetime_event] = useState("");
-// const [category_id, setCategory_id] = useState(0);
-// const [location, setLocation] = useState("");
-// const [description, setDescription] = useState("");
-
-//  const editEvent = () => {
-//    const formData = new FormData();
-//    formData.append("title", title);
-//    formData.append("hosted_by", hosted_by);
-//    formData.append("cover", cover);
-//    formData.append("datetime_event", datetime_event);
-//    formData.append("category_id", +category_id);
-//    formData.append("location", location);
-//    formData.append("description", description);
-//    console.log(formData);
-
-//    setIsProcess(true);
-//    axios
-//      .put(`/api/events/${id dari si event}`, formData, {
-//        headers: {
-//          "Content-Type": "multipart/form-data",
-//          Authorization: `Bearer ${localStorage.getItem("token")}`,
-//        },
-//      })
-//      .then((response) => {
-//        console.log(response);
-//        alert("berhasil");
-//      })
-//      .catch((err) => {
-//        console.log(err);
-//        console.log("error");
-//      })
-//      .finally(setIsProcess(false));
-//  };

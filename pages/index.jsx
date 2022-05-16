@@ -2,14 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 
 import Card from "../components/Card";
 import HomeMenu from "../components/HomeMenu";
-import PrEvCard from "../components/PrEvCard";
-// import Search from "../components/search";
 
 import * as EventServices from "../service/event";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-import styles from "../styles/Home.module.css";
 import LoadSpin from "../components/LoadSpin";
 
 export default function Home() {
@@ -43,12 +39,7 @@ export default function Home() {
         if (res.code === 200) {
           setEvent(res.data);
           setIsLoading(false);
-          // console.log(event);
-        } else {
-          // console.log(res);
         }
-        // setEvent(res.data);
-
         return res;
       })
       .catch((err) => {
@@ -68,7 +59,6 @@ export default function Home() {
         <div>
           <div className="flex justify-center">
             <div className="my-3 mt-9  ">
-              {/* <div className="input-group relative flex w-full mb-4"> */}
               <form
                 ref={nameForm}
                 className="input-group relative flex w-full mb-4"
@@ -113,7 +103,6 @@ export default function Home() {
                   </svg>
                 </button>
               </form>
-              {/* </div> */}
             </div>
           </div>
         </div>

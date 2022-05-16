@@ -40,7 +40,7 @@ export default function Login() {
   const handleLogin = async () => {
     var config = {
       method: "post",
-      url: "https://tupulung.wildani.com/api/auth",
+      url: "https://tupulung.wildani.tech/api/auth",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -49,10 +49,8 @@ export default function Login() {
 
     await axios(config)
       .then((response) => {
-        // console.log(response.data);
         dataSaver(response.data.data);
         alert("berhasil");
-        // Router.push("/");
         window.location.reload();
       })
       .catch((response) => {
@@ -79,22 +77,12 @@ export default function Login() {
         },
       })
       .then((response) => {
-        // console.log(response);
         alert("berhasil");
         Router.push("/authentication/login");
       })
       .catch((err) => {
-        console.log(err);
-        console.log("error");
         alert("gagal register");
       });
-    // console.log(name);
-    // console.log(email);
-    // console.log(password);
-    // console.log(gender);
-    // console.log(address);
-    // console.log(avatar);
-    // console.log(dob);
   };
 
   let result;
@@ -109,14 +97,12 @@ export default function Login() {
         </p>
 
         <form action="" id={styles["formInput"]}>
-          {/* id={styles["inputForm"]} */}
           <div>
             <label htmlFor="" className="text-emerald-900 dark:text-white">
               Email
             </label>
             <input
               type="text"
-              // value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
