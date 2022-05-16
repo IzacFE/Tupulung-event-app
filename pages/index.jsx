@@ -27,9 +27,9 @@ export default function Home() {
     fetchData({
       limit: 10,
       page: 1,
-      q: search,
-      location: location,
-      category_id: c,
+      // q: search,
+      // location: location,
+      // category_id: c,
     });
   }, [search, location, c]);
 
