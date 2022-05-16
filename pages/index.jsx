@@ -25,8 +25,8 @@ export default function Home() {
 
   useEffect(() => {
     fetchData({
-      limit: 10,
-      page: 1,
+      // limit: 10,
+      // page: 1,
       // q: search,
       // location: location,
       // category_id: c,
@@ -43,7 +43,6 @@ export default function Home() {
         return res;
       })
       .catch((err) => {
-        console.log(err);
         setIsLoading(true);
       });
   };
